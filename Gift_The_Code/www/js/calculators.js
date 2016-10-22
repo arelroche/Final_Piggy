@@ -1,33 +1,42 @@
 
-function PointsCalculator () {}
-
-PointsCalculator.prototype.retrieveGoal = function (id, successCallback) {
-  db.transaction(function (tx) {
-    tx.executeSql('SELECT * FROM goals WHERE id = ?', id, successCallback)
-  })
-};
-
-PointsCalculator.prototype.retrieveGoalsPoints = function (ids, successCallback) {
-  console.log("retrieveGoalsPoints")
-  db.transaction(function (tx) {
-    tx.executeSql('SELECT points FROM goals WHERE id IN (?,?)', ids, successCallback)
-  })
-};
-
-PointsCalculator.prototype.savePointsForGoal = function (goal_id, points) {
-  db.transaction(function (tx) {
-    tx.executeSql('UPDATE goals SET points = ? WHERE id = ?', [points, goal_id], function(transaction, results) {
-      console.log(results);
+function PointsCalculator () {
+  
+  function getActiveGoals (date, successCallback) {
+    db.transaction(function (tx) {
+      tx.executeSql('SELECT * FROM goals WHERE startDate < ? AND endDate >= ?', [date, date], successCallback)
     })
-  })
-};
+  }
+
+  // function retrieveGoal (id, successCallback) {
+  //   db.transaction(function (tx) {
+  //     tx.executeSql('SELECT * FROM goals WHERE id = ?', id, successCallback)
+  //   })
+  // };
+
+  // function retrieveGoalsPoints (ids, successCallback) {
+  //   db.transaction(function (tx) {
+  //     tx.executeSql('SELECT points FROM goals WHERE id IN (?,?)', ids, successCallback)
+  //   })
+  // };
+
+  function savePointsForGoal (goal_id, points) {
+    db.transaction(function (tx) {
+      tx.executeSql('UPDATE goals SET points = ? WHERE id = ?', [points, goal_id], function(transaction, results) {
+        console.log(results);
+      })
+    })
+  };
+
+  function markGoalAsComplete (goal_id) {
+    db.transaction(function (tx) {
+      tx.executeSql('UPDATE goals SET complete = 1 WHERE id = ?', [goal_id], function(transaction, results) {
+        console.log(results);
+      })
+    })
+  }
 
 
-PointsCalculator.prototype.pointsForGoal = function(goal_id) {
-  var that = this;
-  this.retrieveGoal(goal_id, function(tx, results) {
-    console.log("pointsForGoal")
-    var goal = results.rows[0]
+  function pointsForGoal (goal) {
     var periodStart = new Date(goal.startDate).valueOf()
     var periodEnd = new Date(goal.endDate).valueOf()
     var periodDuration = periodEnd - periodStart
@@ -35,60 +44,90 @@ PointsCalculator.prototype.pointsForGoal = function(goal_id) {
     var periodElapsed = currentDate - periodStart
 
     var periodElapsedPercentage = (periodElapsed / periodDuration) * 100.0
-    var proratedGoal = goal.goalMoney * periodElapsedPercentage
+    // var proratedGoal = goal.goalMoney * periodElapsedPercentage
 
     var balance = goal.goalMoney - goal.currentMoney
 
     var percentCompletedTotalGoal = (balance / goal.goalMoney) * 100.0
     // var percentCompeltedProratedGoal = (balance / proratedGoal) * 100.0
 
-    var points = that.pointsMultiplier(percentCompletedTotalGoal)
-    that.savePointsForGoal(goal_id, points);
-
-    return points
-  }, 
-  function(tx, err) {
-    console.log(err);
-  });
-}
-
-PointsCalculator.prototype.pointsMultiplier = function(percentCompleted) {
-  var maxPoints = 1000
-
-  if (percentCompleted < 25) {
-    return (percentCompleted * 0.5) * maxPoints
-  } else if (percentCompleted < 50) {
-    return (percentCompleted * 0.6) * maxPoints
-  } else if (percentCompleted < 75) {
-    return (percentCompleted * 0.7) * maxPoints
-  } else if (percentCompleted < 100) {
-    return (percentCompleted * 0.9) * maxPoints
-  } else if (percentCompleted >= 100) {
-    return (percentCompleted * 1.0) * maxPoints
+    var points = pointsMultiplier(percentCompletedTotalGoal, goal)
+    goal.points = points;
+    console.log(`POINTS FOR ${goal.name}: ${goal.points}`)
+    savePointsForGoal(goal.id, points);
   }
-}
 
-PointsCalculator.prototype.aggregatePoints = function(goal_ids) {
-  this.retrieveGoalsPoints(goal_ids, function(tx, results) {
-    var total = 0
-    for (i = 0; i < results.rows.length; i++) {
-      total += results.rows[i].points
+  function pointsMultiplier (percentCompleted, goal) {
+    var totalMultiplier = 10
+
+    if (percentCompleted < 25) {
+      return (percentCompleted * 0.5) * totalMultiplier
+    } else if (percentCompleted < 50) {
+      return (percentCompleted * 0.6) * totalMultiplier
+    } else if (percentCompleted < 75) {
+      return (percentCompleted * 0.7) * totalMultiplier
+    } else if (percentCompleted < 100) {
+      return (percentCompleted * 0.9) * totalMultiplier
+    } else if (percentCompleted >= 100) {
+      markGoalAsComplete(goal.id)
+      return (percentCompleted * 1.0) * totalMultiplier
     }
-    return total;
-  },
-  function(tx, err) {
-    console.log(err);
-  });
+  }
+
+  var aggregatePoints = function(currentGoals) {
+    console.log("AGGRETAGE POINTS")
+    var promise = new Promise(function(resolve, reject) {
+      var sum = 0
+      currentGoals.forEach(function(goal) {
+        sum += goal.points
+      });
+      var total = sum / currentGoals.length
+      console.log(`AGGRETAGED POINTS: ${total}`)
+      resolve(total);
+    })
+  }
+
+  var getCurrentGoals = function() {
+    console.log("GET CURRENT GOALS")
+    var promise = new Promise(function(resolve, reject) {
+      var currentGoals = []
+      getActiveGoals(new Date().valueOf(), function(tx, results) {
+        for (i = 0; i < results.rows.length; i++) {
+          currentGoals.push(results.rows[i])
+        };
+        console.log(currentGoals)
+        resolve(currentGoals);
+      });
+    })
+    return promise
+  }
+
+  var updateCurrentGoals = function (currentGoals) {
+    console.log("UPDATE CURRENT GOALS")
+    var promise = new Promise(function(resolve, reject) {
+      currentGoals.forEach(function(goal) {
+        pointsForGoal(goal)
+      });
+      console.log(currentGoals)
+      resolve(currentGoals)
+    })
+    return promise
+  }
+
+  return {
+    getCurrentGoals: getCurrentGoals,
+    updateCurrentGoals: updateCurrentGoals,
+    aggregatePoints: aggregatePoints
+  }
+
 }
 
 window.setTimeout(function() {
   pointsCalc = new PointsCalculator();
-  pointsCalc.pointsForGoal([34]);
-  pointsCalc.pointsForGoal([35]);
+  pointsCalc.getCurrentGoals()
+    .then(pointsCalc.updateCurrentGoals)
+    .then(pointsCalc.aggregatePoints)
 }, 1000);
 
-window.setTimeout(function() {
-  pointsCalc = new PointsCalculator();
-  pointsCalc.aggregatePoints([34,35])
-}, 2000);
+
 
