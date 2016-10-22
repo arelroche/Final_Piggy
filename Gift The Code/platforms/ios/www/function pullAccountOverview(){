@@ -1,0 +1,20 @@
+function pullAccountOverview(){
+	var accountInfo = [[0,0]];
+	var title;
+	var amount;
+	$( ".myAccValue" ).each(function( index ) {
+	  //console.log( index + ": " + $( this ).text() );
+	  if (index % 2 === 0) { 
+	  	console.log("Title: " + $(this).text());
+	  	title = $( this ).text();
+	  }
+	   else { 
+	   	console.log("Value: " + $(this).text()); 
+	   	amount = $( this ).text();
+	   	accountInfo.push([title, amount]);
+	   }
+	});
+	return JSON.stringify(accountInfo);
+}
+pullAccountOverview();
+
