@@ -13,6 +13,7 @@ Targeting any age bracket, the incentive of the game is that users should care a
 ##Technology
 
 1. Apache Cordova 
+
 [Cordova](https://cordova.apache.org/) is mobile application development framework that enables software programmers to build applications for mobile devices using CSS3, HTML5, and JavaScript instead of relying on platform-specific APIs like those in Android, iOS, or Windows Phone. 
   
   Cordova was our main platform and was used to build our cross-platform hybrid application, capable of running on both Android and iOS with no changes to the source code. This application was designed to be entirely __client-side__.
@@ -20,12 +21,15 @@ Targeting any age bracket, the incentive of the game is that users should care a
   This was a new platform for most of the group, so developing for it was part of the learning curve, but installing and getting started with Cordova was relatively painless.
 
 2. WebSQL 
+
 The user's financial information and app data is stored in a __Local__ SQL Database created using WebSQL.
 
 3. JQuery Injection 
+
 Lack of a easily accessible Financial Aggregation API that is capable of running purely from the client-side (or our inabaility to find one), required the use of JQuery Injection to grab financial information from the user's Banking Information front-end and copy it to the device's Local Storage for further use. This process would depend on successfuly authentication with the user's online banking service.
 
 4. HTML / CSS / JS 
+
 The applications views were created using the front-end trio of HTML / CSS / JS. Mockups for all of the views and icons were created in Adode Photoshop, and stock icons and fonts were grabbed from Font Awesome. Framework 7, from Cordova, was used to the create a lot of the application's basic styling options.
 
 5. Debugging Tools
