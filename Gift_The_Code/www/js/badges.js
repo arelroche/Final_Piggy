@@ -9,7 +9,7 @@ function Badges () {
   }
 
   function awardPoints (amt) {
-    var currentPoints = parseInt(localStorage.getItem('currentTotalPoints'))
+    var currentPoints = parseInt(localStorage.getItem('staticPoints'))
     var updatedPoints = currentPoints + amt
     localStorage.setItem('staticPoints', updatedPoints)
     console.log(`Awarded ${amt} points`)
@@ -59,8 +59,16 @@ function Badges () {
     })
   }
 
+  var trackLogin = function() {
+    var currentCount = parseInt(localStorage.getItem('loginCount'))
+    var newCount = currentCount + 1
+    localStorage.getItem('loginCount', newCount)
+    awardPoints(50);
+  }
+
   return {
     userBadges: userBadges,
-    updateBadges: updateBadges
+    updateBadges: updateBadges,
+    trackLogin: trackLogin
   }
 }

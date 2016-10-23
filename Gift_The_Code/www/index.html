@@ -159,9 +159,10 @@
                   <img src="img/piggy1.jpg" style="width: 120px;">
                 </div>
                 <div id="progressBarContainer" style="width: 100%;" align="center">
-                  <div id="progressBar" style="width: 70%; height: 50px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
+ <!--                  <div id="progressBar" style="width: 70%; height: 50px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
                     <div id="barProgress" style="width: 75%; height: 100%; background: #adcf36;"></div>
-                  </div>
+                  </div> -->
+                  <progress id="progressBar" max='1000'></progress>
                   <div id="subProgressBar" style="width: 62%; margin-top: 5px">
                     <table style="width: 100%; font-weight: 700;">
                       <tr>
@@ -437,11 +438,20 @@
         window.levels = Levels();
         
         database.buildDatabase()
-          .then(bankInfo.fetchTransactions)
-          .then(database.updateDatabaseWithTransationInfo)
+          // .then(bankInfo.fetchTransactions)
+          // .then(database.updateDatabaseWithTransationInfo)
           .then(goalsTracker.getCurrentGoals)
           .then(goalsTracker.updateCurrentGoals)
           .then(goalsTracker.aggregatePoints)
+          .then(function() {
+            levels.updateLevel()
+            var totalPoints = goalInfo.totalPoints()
+            $('#progressBar').value = totalPoints
+            $('#userTotalPoints').html(totalPoints)
+          })
+
+        badges.trackLogin()
+
 
     </script>
   </body>
