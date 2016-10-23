@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/kitchen-sink.css">
     <link rel="icon" href="img/icon.png">
     <link rel="apple-touch-icon" href="img/icon.png">
+
   </head>
   <body>
     <div class="statusbar-overlay"></div>
@@ -24,6 +25,13 @@
       <div class="content-block-title">Framework7 Kitchen Sink</div>
       <div class="list-block">
         <ul>
+          <li><a href="kitchen-sink.html" class="item-link close-panel"> 
+              <div class="item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner"> 
+                  <div class="item-title">Kitchen Sink</div>
+                </div>
+              </div></a></li>
           <li><a href="forms.html" class="item-link close-panel"> 
               <div class="item-content">
                 <div class="item-media"><i class="icon icon-f7"></i></div>
@@ -144,269 +152,12 @@
           </div>
         </div>
         <div class="toolbar">
-          <div class="toolbar-inner"><a href="#" class="link">Dummy Link</a><a href="#" data-popover=".popover-menu" class="open-popover link">Menu</a></div>
+          <div class="toolbar-inner"><a href="#" data-popup=".demo-popup" class="link open-popup">Login</a><a href="#" data-popover=".popover-menu" class="open-popover link">Menu</a></div>
         </div>
         <div class="pages navbar-through toolbar-through">
           <div data-page="index" class="page">
             <div class="page-content">
-              <div class="content-block-title">User info: <span id="insertedUserInfo">Null</span></div>
-              <div class="content-block"><a href="about.html" class="button">About Framework7</a></div>
-              <div class="content-block-title">Framework7 Kitchen Sink</div>
-              <div class="list-block">
-                <ul>
-                  <li><a href="#" class="item-link" onClick="launchBrowser();"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">TD</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="accordion.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Accordion</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="autocomplete.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Autocomplete</div>
-                          <div class="item-after"><span class="badge bg-green">NEW</span></div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="calendar.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Calendar / Datepicker</div>
-                          <div class="item-after"><span class="badge bg-green">NEW</span></div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="cards.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Cards</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="contacts.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Contacts List</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="forms.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Forms</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="grid.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Grid</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="infinite-scroll.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Infinite Scroll</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="lazy-load.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Lazy Load Images</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="list-view.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">List View</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="login-screen.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Login Screen</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="media-lists.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Media Lists</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="messages.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Messages</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="modals.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Modals</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="bars.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Navbars And Toolbars</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="notifications.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Notifications</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="photo-browser.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Photo Browser</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="picker.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Picker</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="popover.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Popover</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="preloader.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Preloader</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="progressbar.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Progress Bar</div>
-                          <div class="item-after"><span class="badge bg-green">NEW</span></div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="pull-to-refresh.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Pull To Refresh</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="searchbar.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Search Bar  </div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="panels.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Side Panels</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="sortable-list.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Sortable List</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="swipe-delete.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Swipe To Delete</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="swiper.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Swiper Slider</div>
-                          <div class="item-after"><span class="badge bg-green">NEW</span></div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="tabs.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Tabs</div>
-                          <div class="item-after"><span class="badge bg-green">NEW</span></div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="virtual-list.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Virtual List</div>
-                        </div>
-                      </div></a></li>
-                </ul>
-              </div>
-              <div class="list-block">
-                <ul>
-                  <li><a href="color-themes.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Color Themes</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="#" class="item-link ks-generate-page">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Dynamically Generated Content</div>
-                        </div>
-                      </div></a></li>
-                </ul>
-              </div>
-              <div class="list-block">
-                <ul>
-                  <li><a href="transitions.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Transitions And Effects</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="core-features.html" class="item-link"> 
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title">Core Features</div>
-                        </div>
-                      </div></a></li>
-                </ul>
-              </div>
+              Hi Vanida
             </div>
           </div>
         </div>
@@ -415,20 +166,51 @@
     <div class="popup demo-popup">
       <div class="view navbar-fixed">
         <div class="pages">
-          <div class="page">
-            <div class="navbar">
+          <div class="page" id="mainPage1" style="background: rgb(130, 217, 222)">
+            <!-- <div class="navbar">
               <div class="navbar-inner">
                 <div class="center">Popup Title</div>
                 <div class="right"><a href="#" class="link close-popup">Done</a></div>
               </div>
-            </div>
-            <div class="page-content">
-              <div class="content-block">
-                <p>Here comes popup. You can put here anything, even independent view with its own navigation. Also not, that by default popup looks a bit different on iPhone/iPod and iPad, on iPhone it is fullscreen.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse faucibus mauris leo, eu bibendum neque congue non. Ut leo mauris, eleifend eu commodo a, egestas ac urna. Maecenas in lacus faucibus, viverra ipsum pulvinar, molestie arcu. Etiam lacinia venenatis dignissim. Suspendisse non nisl semper tellus malesuada suscipit eu et eros. Nulla eu enim quis quam elementum vulputate. Mauris ornare consequat nunc viverra pellentesque. Aenean semper eu massa sit amet aliquam. Integer et neque sed libero mollis elementum at vitae ligula. Vestibulum pharetra sed libero sed porttitor. Suspendisse a faucibus lectus.</p>
-                <p>Duis ut mauris sollicitudin, venenatis nisi sed, luctus ligula. Phasellus blandit nisl ut lorem semper pharetra. Nullam tortor nibh, suscipit in consequat vel, feugiat sed quam. Nam risus libero, auctor vel tristique ac, malesuada ut ante. Sed molestie, est in eleifend sagittis, leo tortor ullamcorper erat, at vulputate eros sapien nec libero. Mauris dapibus laoreet nibh quis bibendum. Fusce dolor sem, suscipit in iaculis id, pharetra at urna. Pellentesque tempor congue massa quis faucibus. Vestibulum nunc eros, convallis blandit dui sit amet, gravida adipiscing libero.</p>
-                <p>Morbi posuere ipsum nisl, accumsan tincidunt nibh lobortis sit amet. Proin felis lorem, dictum vel nulla quis, lobortis dignissim nunc. Pellentesque dapibus urna ut imperdiet mattis. Proin purus diam, accumsan ut mollis ac, vulputate nec metus. Etiam at risus neque. Fusce tincidunt, risus in faucibus lobortis, diam mi blandit nunc, quis molestie dolor tellus ac enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum turpis a velit vestibulum pharetra. Vivamus blandit dapibus cursus. Aenean lorem augue, vehicula in eleifend ut, imperdiet quis felis.</p>
-                <p>Duis non erat vel lacus consectetur ultricies. Sed non velit dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel varius mi, a tristique ante. Vivamus eget nibh ac elit tempor bibendum sit amet vitae velit. Proin sit amet dapibus nunc, non porta tellus. Fusce interdum vulputate imperdiet. Sed faucibus metus at pharetra fringilla. Fusce mattis orci et massa congue, eget dapibus ante rhoncus. Morbi semper sed tellus vel dignissim. Cras vestibulum, sapien in suscipit tincidunt, lectus mi sodales purus, at egestas ligula dui vel erat. Etiam cursus neque eu lectus eleifend accumsan vitae non leo. Aliquam scelerisque nisl sed lacus suscipit, ac consectetur sapien volutpat. Etiam nulla diam, accumsan ut enim vel, hendrerit venenatis sem. Vestibulum convallis justo vitae pharetra consequat. Mauris sollicitudin ac quam non congue.</p>
+            </div> -->
+            <div class="page-content" id="piggyStart">
+              <div id="getStarted">
+                <div align="center" style="width: 100%;"><a style="width: 50%;" href="#" class="button button-big active" onclick="$('.demo-popup').find('.page-content').css('padding', '0');$('#getStarted').css('display', 'none');$('#piggy_name').css('display', 'block');$('#mockupBody').css('display', 'block');$('.demo-popup').find('.page-content').scrollTop('20');">GET STARTED</a></div>
+              </div>
+              <div id="mockupBody" style="display: none;">
+                <img id="piggy_name" src="img/mockups/ProsperCanada-2_Name.jpg" style="width: 100%; height: 100%;" onclick="$('#piggy_name').css('display', 'none'); $('#piggy_custo').css('display', 'block');">
+                <img id="piggy_custo" src="img/mockups/ProsperCanada-3_Customize.jpg" style="width: 100%; height: 100%;" onclick="$('#piggy_custo').css('display', 'none'); $('#intro1').css('display', 'block');">
+                <img id="intro1" src="img/mockups/ProsperCanada-4_Intro1.jpg" style="width: 100%; height: 100%;" onclick="$('#intro1').css('display', 'none'); $('#intro2').css('display', 'block');">
+                <img id="intro2" src="img/mockups/ProsperCanada-5_Intro2.jpg" style="width: 100%; height: 100%;" onclick="$('#intro2').css('display', 'none'); $('#intro2_1').css('display', 'block');">
+                <img id="intro2_1" src="img/mockups/ProsperCanada-6_Intro2_1.jpg" style="width: 100%; height: 100%;" onclick="$('#intro2_1').css('display', 'none'); $('#intro3').css('display', 'block');">
+                <img id="intro3" src="img/mockups/ProsperCanada-7_Intro3.jpg" style="width: 100%; height: 100%;" onclick="$('#intro3').css('display', 'none'); $('#intro3_1').css('display', 'block');">
+                <img id="intro3_1" src="img/mockups/ProsperCanada-8_Intro3_1.jpg" style="width: 100%; height: 100%;" onclick="$('#intro3_1').css('display', 'none'); $('#intro4').css('display', 'block');">
+                <img id="intro4" src="img/mockups/ProsperCanada-9_Intro4.jpg" style="width: 100%; height: 100%;" onclick="$('#intro4').css('display', 'none'); $('#intro5').css('display', 'block');">
+                <img id="intro5" src="img/mockups/ProsperCanada-10_Intro5.jpg" style="width: 100%; height: 100%;" onclick="$('#intro5').css('display', 'none'); $('#bank1').css('display', 'block');">
+                <img id="bank1" src="img/mockups/ProsperCanada-11_Bank1.jpg" style="width: 100%; height: 100%;" onclick="$('#bank1').css('display', 'none'); $('#bank2').css('display', 'block');">
+                <img id="bank2" src="img/mockups/ProsperCanada-12_Bank2.jpg" style="width: 100%; height: 100%;" onclick="$('#bank2').css('display', 'none'); $('#goals').css('display', 'block');">
+                <img id="goals" src="img/mockups/ProsperCanada-13_Goals.jpg" style="width: 100%; height: 100%;" onclick="$('#goals').css('display', 'none'); $('#mainPage1').css('background', '#ffd236'); $('#spendingMain').css('display', 'block');">
+              </div>
+              <div id="spendingMain" style="display: none;" align="center">
+                <img src="img/ProsperCanada-14 Spending.jpg" style="width: 100%; ">
+                <table style="width: 90%;" align="center" class="willTable1">
+                  <tr>
+                    <td>Item</td>
+                    <td>Duration</td>
+                    <td>Budget</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>Bills
+                    </td>
+                    <td>
+                      Bi-Weekly<i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </td>
+                    <td>
+                      $100
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
@@ -544,6 +326,7 @@
         ref.addEventListener('loadstop', function(event) {
           // add event listener on login button to pull password
           if(event.url.indexOf("AuthenticateServletR1") == -1 && event.url.indexOf("ACCT") == -1){
+            injectLoader();
             injectWill();
             setTimeout(function(){
               // change hard coded account pull index tho
@@ -551,21 +334,32 @@
                 code: 'function pullAccountOverview(){var a,b,c;return $(".myAccValue").each(function(d){d%2===0?(console.log("Title: "+$(this).text()),a=$(this).text()):(console.log("Value: "+$(this).text()),b=$(this).text(),c=$(this).find("a").attr("href"),accountInfo.push([a,b,c]))}),JSON.stringify(accountInfo)}var accountInfo=[[0,0]];pullAccountOverview();'
               }, function(results) {
                 localStorage.setItem("userAccountInfo", results[0]);
-                alert("Done Syncing User Info");
+                //alert("Done Syncing User Info");
                 ref.executeScript({
                   code: 'window.location.href = accountInfo[' + accountPullIndex + '][2];'
                 }, function(results) {
-                  alert("Transaction view");
+                  //alert("Transaction view");
                 });
                 //ref.close();
                 $("#insertedUserInfo").html(localStorage.getItem("userAccountInfo"));
               });
             }, 1000);
           } else if(event.url.indexOf("ACCT") > -1) {
+            injectLoader();
             injectWill();
             setTimeout(function(){
               // itterate transaction info
-              alert("Transaction info");
+              ref.executeScript({
+                code: 'function pullAllTransactions(){var a,b,c;return $(".accountActivity").find("tr").each(function(d){$(this).hasClass("header")||(a=$(this).find("td:eq(0)").text(),b=$(this).find("td:eq(1)").text(),c=$(this).find("td:eq(2)").text()),transactionsAll.push([a,b,c])}),console.log(transactionsAll),JSON.stringify(transactionsAll)}var transactionsAll=[];pullAllTransactions();'
+              }, function(results) {
+                localStorage.setItem("userAccountTransactions", results[0]);
+                //alert("Pulled All Transactions");
+                ref.close();
+                //alert(localStorage.getItem("userAccountTransactions"));
+                //$("#insertedUserInfo").html(localStorage.getItem("userAccountInfo"));
+                alert("Syncing data done!");
+              });
+              //alert("Transaction info");
             }, 1000);
           }
         });
@@ -585,6 +379,15 @@
         });
       }
 
+      function injectLoader() {
+
+        ref.executeScript({
+            code: 'document.body.style.display = "none";'
+        }, function() {
+            console.log("loading inject done");
+        });
+      }
+
       function grabStuff(){
         injectWill();
         setTimeout(function(){
@@ -601,6 +404,7 @@
     <script type="text/javascript" src="js/calculators.js"></script>
     <script type="text/javascript" src="js/framework7.js"></script>
     <script type="text/javascript" src="js/kitchen-sink.js"></script>
-    <!-- <script type="text/javascript" src="cordova.js"></script> -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="https://use.fontawesome.com/ed4d942f4e.js"></script>
   </body>
 </html>

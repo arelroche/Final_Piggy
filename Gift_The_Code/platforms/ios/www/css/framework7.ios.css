@@ -22,7 +22,8 @@ body {
   overflow-x: hidden;
 }
 body {
-  font-family: -apple-system, SF UI Text, Helvetica Neue, Helvetica, Arial, sans-serif;
+  /* font-family: -apple-system, SF UI Text, Helvetica Neue, Helvetica, Arial, sans-serif; */
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   color: #000;
@@ -61,6 +62,12 @@ a {
 }
 p {
   margin: 1em 0;
+}
+.willTable1 td{
+  text-align: center;
+  border-bottom-width: 1px;
+  border-bottom-color: #fff;
+  border-bottom-style: solid;
 }
 /* === Grid === */
 .row {
@@ -3115,6 +3122,12 @@ html:not(.watch-active-state) .button:active,
   font-size: 17px;
   height: 44px;
   line-height: 42px;
+  background: #fff; 
+  color: #333; 
+  border-color: #FFF; 
+  box-shadow: 2px 2px 0px rgba(0,0,0, 0.1); 
+  font-weight: 700; 
+  text-transform: uppercase;
 }
 .button.button-fill {
   color: #fff;
