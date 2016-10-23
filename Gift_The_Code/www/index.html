@@ -175,7 +175,7 @@
                 </div>
                 <div id="progressBarContainer" style="width: 100%;" align="center">
                   <div id="progressBar" style="width: 70%; height: 50px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
-                    <div id="barProgress" style="width: 0%; height: 100%; background: #adcf36;"></div>
+                    <div id="barProgress" style="width: 90%; height: 100%; background: #adcf36;"></div>
                   </div>
                   <div id="subProgressBar" style="width: 62%; margin-top: 5px">
                     <table style="width: 100%; font-weight: 700;">
@@ -189,6 +189,128 @@
                       </tr>
                     </table>
                   </div>
+                </div>
+              </div>
+              <div id="overview" align="center">
+                <div id="spending-bar-container" class="overviewBarContainer">
+                  <h1>Spending</h1>
+                  <table style="width: 100%;">
+                    <tr>
+                      <td style="width: 20%;" align="center">
+                        <table id="increaseDecreaseGoal" style="font-size: 25px">
+                          <tr>
+                            <td>
+                              <i class="fa fa-caret-up" aria-hidden="true"></i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                      <td style="width: 60%;" align="center">
+                        <div id="progressBarContainer" style="width: 100%;" align="center">
+                          <div id="progressBar" style="width: 90%; height: 35px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
+                            <div id="barProgress" style="width: 80%; height: 100%; background: red;"></div>
+                          </div>
+                          <div id="subProgressBar" style="margin-top: 5px" align="center">
+                            <table style="width: 100%; font-weight: 700;">
+                              <tr>
+                                <td id="points" align="center">
+                                  <span id="userTotalPoints">$0</span><span id="currentOutOf"> / $1000</span>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="width: 20%;" align="center">
+                        <i class="fa fa-plus-circle" aria-hidden="true" style=" font-size: 30px; margin-top: -50px;"></i>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div id="saving-bar-container" class="overviewBarContainer" style="background: #d8d8d8;">
+                  <h1>Saving</h1>
+                  <table style="width: 100%;">
+                    <tr>
+                      <td style="width: 20%;" align="center">
+                        <table id="increaseDecreaseGoal" style="font-size: 25px">
+                          <tr>
+                            <td>
+                              <i class="fa fa-caret-up" aria-hidden="true"></i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                      <td style="width: 60%;" align="center">
+                        <div id="progressBarContainer" style="width: 100%;" align="center">
+                          <div id="progressBar" style="width: 90%; height: 35px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
+                            <div id="barProgress" style="width: 40%; height: 100%; background: orange;"></div>
+                          </div>
+                          <div id="subProgressBar" style="margin-top: 5px" align="center">
+                            <table style="width: 100%; font-weight: 700;">
+                              <tr>
+                                <td id="points" align="center">
+                                  <span id="userTotalPoints">$0</span><span id="currentOutOf"> / $1000</span>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="width: 20%;" align="center">
+                        <i class="fa fa-plus-circle" aria-hidden="true" style=" font-size: 30px; margin-top: -50px;"></i>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div id="repaying-bar-container" class="overviewBarContainer">
+                  <h1>Repaying</h1>
+                  <table style="width: 100%;">
+                    <tr>
+                      <td style="width: 20%;" align="center">
+                        <table id="increaseDecreaseGoal" style="font-size: 25px">
+                          <tr>
+                            <td>
+                              <i class="fa fa-caret-up" aria-hidden="true"></i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                      <td style="width: 60%;" align="center">
+                        <div id="progressBarContainer" style="width: 100%;" align="center">
+                          <div id="progressBar" style="width: 90%; height: 35px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
+                            <div id="barProgress" style="width: 75%; height: 100%; background: #adcf36;"></div>
+                          </div>
+                          <div id="subProgressBar" style="margin-top: 5px" align="center">
+                            <table style="width: 100%; font-weight: 700;">
+                              <tr>
+                                <td id="points" align="center">
+                                  <span id="userTotalPoints">$0</span><span id="currentOutOf"> / $1000</span>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="width: 20%;" align="center">
+                        <i class="fa fa-plus-circle" aria-hidden="true" style=" font-size: 30px; margin-top: -50px;"></i>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </div>
               <div id="badges" align="center">
@@ -466,6 +588,73 @@
     <script type="text/javascript" src="js/levels.js"></script>
 
     <script>
+      // wills high level js functions
+
+      function demo(){
+        // hides the debugging bar at bottom
+        $(".toolbar").first().css("display", "none")
+        // check if first login
+        if(localStorage.getItem("firstLogin") == null){
+          //localStorage.setItem("firstLogin", "true");
+
+        }
+      }
+      
+      function setTotalPoints(total, outOf){
+        $("#header").find("#userTotalPoints").html(total);
+        $("#header").find("#currentOutOf").html("/ " + outOf + " pts");
+        $("#header").find("#barProgress").css("width", ((total/outOf) * 100) + "%")
+      }
+
+      function setSpendingDollars(total, outOf){
+        $("#spending-bar-container").find("#userTotalPoints").html("$" + total);
+        $("#spending-bar-container").find("#currentOutOf").html("/ $" + outOf);
+        var barPercentage = ((total/outOf) * 100);
+        $("#spending-bar-container").find("#barProgress").css("width", barPercentage + "%");
+        if(barPercentage >= 75){
+          $("#spending-bar-container").find("#barProgress").css("background", "red");
+        } else if(barPercentage >= 30 && barPercentage < 75){
+          $("#spending-bar-container").find("#barProgress").css("background", "orange");
+        } else {
+          $("#spending-bar-container").find("#barProgress").css("background", "#adcf36");
+        }
+      }
+
+      function setSavingDollars(total, outOf){
+        $("#saving-bar-container").find("#userTotalPoints").html("$" + total);
+        $("#saving-bar-container").find("#currentOutOf").html("/ $" + outOf);
+        var barPercentage = ((total/outOf) * 100);
+        $("#saving-bar-container").find("#barProgress").css("width", barPercentage + "%");
+        if(barPercentage >= 75){
+          $("#saving-bar-container").find("#barProgress").css("background", "#adcf36");
+        } else if(barPercentage >= 30 && barPercentage < 75){
+          $("#saving-bar-container").find("#barProgress").css("background", "orange");
+        } else {
+          $("#saving-bar-container").find("#barProgress").css("background", "red");
+        }
+      }
+
+      function setRepayingDollars(total, outOf){
+        $("#repaying-bar-container").find("#userTotalPoints").html("$" + total);
+        $("#repaying-bar-container").find("#currentOutOf").html("/ $" + outOf);
+        var barPercentage = ((total/outOf) * 100);
+        $("#repaying-bar-container").find("#barProgress").css("width", barPercentage + "%");
+        if(barPercentage >= 75){
+          $("#repaying-bar-container").find("#barProgress").css("background", "#adcf36");
+        } else if(barPercentage >= 30 && barPercentage < 75){
+          $("#repaying-bar-container").find("#barProgress").css("background", "orange");
+        } else {
+          $("#repaying-bar-container").find("#barProgress").css("background", "red");
+        }
+      }
+
+      // on click x speach bubble, hide
+      $("#header").find(".fa-times").click(function(){
+        $("#header").find("#speechBubble").css("display", "none");
+      })
+    </script>
+
+    <script>
         window.database = new DatabaseSetup()
         window.bankInfo = new BankInfo()
         window.goalsTracker = new GoalTracker();
@@ -474,8 +663,8 @@
         window.levels = Levels();
         
         database.buildDatabase()
-          .then(bankInfo.fetchTransactions)
-          .then(database.updateDatabaseWithTransationInfo)
+          //.then(bankInfo.fetchTransactions)
+          //.then(database.updateDatabaseWithTransationInfo)
           .then(goalsTracker.getCurrentGoals)
           .then(goalsTracker.updateCurrentGoals)
           .then(goalsTracker.aggregatePoints)

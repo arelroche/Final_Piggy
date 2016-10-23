@@ -103,6 +103,7 @@ function DatabaseSetup () {
   {
     var promise = new Promise(function(resolve, reject) {
       window.db.transaction(function(tx){
+        var TransactionInfo = JSON.parse(localStorage.getItem("userAccountTransactions"));
         for(var cnt = 0; cnt < TransactionInfo.length; cnt++){
           var date = getDate(TransactionInfo[cnt][0]);
           var name = TransactionInfo[cnt][1];
