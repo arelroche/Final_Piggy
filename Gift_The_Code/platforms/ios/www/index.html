@@ -589,6 +589,17 @@
 
     <script>
       // wills high level js functions
+
+      function demo(){
+        // hides the debugging bar at bottom
+        $(".toolbar").first().css("display", "none")
+        // check if first login
+        if(localStorage.getItem("firstLogin") == null){
+          //localStorage.setItem("firstLogin", "true");
+
+        }
+      }
+      
       function setTotalPoints(total, outOf){
         $("#header").find("#userTotalPoints").html(total);
         $("#header").find("#currentOutOf").html("/ " + outOf + " pts");
