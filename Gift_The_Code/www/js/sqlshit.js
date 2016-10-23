@@ -1,4 +1,4 @@
-function makeGoal(type, currentmoney, goalmoney, startdate, enddate, complete, name)
+function makeGoal(type, currentmoney, goalmoney, startdate, enddate, complete, name, priority)
 {
   return {
     Type : type,
@@ -7,7 +7,8 @@ function makeGoal(type, currentmoney, goalmoney, startdate, enddate, complete, n
     StartDate: startdate,
     EndDate: enddate,
     Complete: complete,
-    Name: name
+    Name: name,
+    Priority: priority
   }
 }
 
@@ -30,8 +31,6 @@ function makePet(name, type, points, goalPoints, skincolor)
   }
 }
 
-
-
 var estimatedSize = 30 *1024*1024;
 
 var db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
@@ -40,16 +39,19 @@ var db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
 // $(document).ready(function(){
   
   db.transaction(function (tx) {
-    
+
     tx.executeSql("CREATE TABLE IF NOT EXISTS goals("+
                   "ID INTEGER PRIMARY KEY ASC,"+
                   "type TEXT,"+
                   "currentMoney money,"+
                   "goalMoney money,"+
-                  "startDate datetime,"+
-                  "endDate datetime,"+
+                  "startDate long,"+
+                  "endDate long,"+
                   "complete bit,"+
                   "points int,"+
+                  "priority int,"+
+                  "progress int,"+
+                  "standing int,"+
                   "name TEXT)"
                   , [], onSuccess, onError);
     
@@ -71,24 +73,34 @@ var db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
     tx.executeSql("CREATE TABLE IF NOT EXISTS itemhistory("+
                   "ID INTEGER PRIMARY KEY ASC,"+
                   "amount money,"+
-                  "date datetime,"+
+                  "date long,"+
                   "name TEXT)"
                   , [], onSuccess, onError);
     
     tx.executeSql("CREATE TABLE IF NOT EXISTS itemmap("+
                   "idItem int,"+
-                  "idGoal int"
+                  "idGoal int)"
+                  , [], onSuccess, onError);
+
+    tx.executeSql("CREATE TABLE IF NOT EXISTS badges("+
+                   "ID INTEGER PRIMARY KEY,"+
+                   "name text UNIQUE,"+
+                   "date long)"
                   , [], onSuccess, onError);
     
-    // InsertGoal(makeGoal("Debt", 10, 50, new Date('2016-10-20'), new Date('2016-10-27'), 0, "card Y"));
-    // InsertGoal(makeGoal("Savings", 10, 50, new Date('2016-10-20'), new Date('2016-11-20'), 0, "card Z"));
+
+    tx.executeSql("DELETE FROM goals");
+
+    InsertGoal(makeGoal("Debt", 15, 50, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card Y", 0));
+    InsertGoal(makeGoal("Savings", 33, 50, new Date('2016-10-20').valueOf(), new Date('2016-11-20').valueOf(), 0, "card Z", 1));
+    InsertGoal(makeGoal("Spending", 980, 1000, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card X", 2));
     
     tx.executeSql('SELECT * FROM goals', [], onSuccess2, onError);
     
     
     function InsertGoal(Goal)
     {
-      tx.executeSql("INSERT INTO goals (type, currentMoney, goalMoney, startDate, endDate, complete, name) VALUES (?,?,?,?,?,?,?)", [Goal.Type, Goal.CurrentMoney, Goal.GoalMoney, Goal.StartDate, Goal.EndDate, Goal.Complete, Goal.Name], onSuccess, onError);  
+      tx.executeSql("INSERT INTO goals (type, currentMoney, goalMoney, startDate, endDate, complete, name, priority) VALUES (?,?,?,?,?,?,?,?)", [Goal.Type, Goal.CurrentMoney, Goal.GoalMoney, Goal.StartDate, Goal.EndDate, Goal.Complete, Goal.Name, Goal.Priority], onSuccess, onError);  
     }
     
 //    InsertGoal(makeGoal("Debt", 10, 50, new Date(), new Date(), 0, "card Z"));
@@ -97,7 +109,7 @@ var db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
 
  
   function onSuccess(transaction, resultSet) {
-    // log('Query completed: ' + JSON.stringify(resultSet) + ", " + JSON.stringify(resultSet.rows) + "," + resultSet.rows.length);
+    log('Query completed: ' + JSON.stringify(resultSet) + ", " + JSON.stringify(resultSet.rows) + "," + resultSet.rows.length);
   }
   function onSuccess2(transaction, results) {
       var tblText='<p>';
@@ -108,8 +120,8 @@ var db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
         tblText+= "<p>" + JSON.stringify(tmpArgs) + "</p>";
       }
       tblText +="</p>";
-//      document.getElementById("tblDiv").innerHTML =tblText;
-    // log('Query completed: ' + tblText);
+     // document.getElementById("tblDiv").innerHTML =tblText;
+    log('Query completed: ' + tblText);
   }
 
   function onError(transaction, error) {
