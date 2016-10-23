@@ -106,7 +106,7 @@ function GoalTracker () {
 
       console.log(`AGGREGATED POINTS: ${total}`)
       console.log(`WEIGHTED POINTS: ${totalWeightedPoints}`)
-      localStorage.setItem('currentTotalPoints', total)
+      localStorage.setItem('currentTotalPoints', totalWeightedPoints)
       resolve(total);
     })
   }
