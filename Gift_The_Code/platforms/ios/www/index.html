@@ -144,20 +144,54 @@
     </div>
     <div class="views">
       <div class="view view-main">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="left"></div>
-            <div class="center sliding">Framework7</div>
-            <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
-          </div>
+        <div id="burgerMenu" style="position: absolute; top: 0; left: 0; z-index: 100; padding: 15px">
+          <a href="#" class="open-panel link icon-only"><i class="fa fa-bars" aria-hidden="true" style=" font-size: 32px; color: #000;"></i></a>
         </div>
         <div class="toolbar">
           <div class="toolbar-inner"><a href="#" data-popup=".demo-popup" class="link open-popup">Login</a><a href="#" data-popover=".popover-menu" class="open-popover link">Menu</a></div>
         </div>
         <div class="pages navbar-through toolbar-through">
-          <div data-page="index" class="page">
-            <div class="page-content">
-              Hi Vanida
+          <div data-page="index" class="page" style="background: #fff;">
+            <div class="page-content" style="padding-top: 0;">
+              <div id="header" style="width: 100%; padding-top: 40px; padding-bottom: 40px; background: #7ed9de;">
+                <div id="piggyFace" style="width: 100%;" align="center">
+                  <img src="img/piggy1.jpg" style="width: 120px;">
+                </div>
+                <div id="progressBarContainer" style="width: 100%;" align="center">
+                  <div id="progressBar" style="width: 70%; height: 50px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
+                    <div id="barProgress" style="width: 75%; height: 100%; background: #adcf36;"></div>
+                  </div>
+                  <div id="subProgressBar" style="width: 62%; margin-top: 5px">
+                    <table style="width: 100%; font-weight: 700;">
+                      <tr>
+                        <td id="name">
+                          Piggy
+                        </td>
+                        <td id="points" align="right">
+                          <span id="userTotalPoints" style="color: #fff;">927</span><span id="currentOutOf">/ 1000 pts</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div id="badges" align="center">
+                <h1>Badges</h1>
+                <table style="width: 100%;">
+                  <tr>
+                    <td id="badge1" class="badge1">
+                      <div id="blankBadge1" class="blankBadge"></div>
+                    </td>
+                    <td id="badge2" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
+                    <td id="badge3" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
+                  </tr>
+                  <tr>
+                    <td id="badge4" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
+                    <td id="badge5" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
+                    <td id="badge6" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -195,23 +229,89 @@
                 <img src="img/ProsperCanada-14 Spending.jpg" style="width: 100%; ">
                 <table style="width: 90%;" align="center" class="willTable1">
                   <tr>
-                    <td>Item</td>
-                    <td>Duration</td>
-                    <td>Budget</td>
+                    <td style="padding-left:20px;font-weight: 600;text-decoration: underline;font-size: small;">ITEM</td>
+                    <td style="padding-left:40px;font-weight: 600;text-decoration: underline;font-size: small;">DURATION</td>
+                    <td style="text-align: center;font-weight: 600;text-decoration: underline;font-size: small;">BUDGET</td>
                   </tr>
                   <tr>
                     <td>
-                      <i class="fa fa-plus-circle" aria-hidden="true"></i>Bills
+                      <i class="fa fa-plus-circle" aria-hidden="true" style="    margin-right: 10px;"></i>Bills
                     </td>
-                    <td>
-                      Bi-Weekly<i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    <td style="padding-left:40px">
+                      Bi-Weekly<i class="fa fa-chevron-down" aria-hidden="true" style="padding-left: 5px;"></i>
                     </td>
-                    <td>
+                    <td style="padding-left:40px;font-weight: 600;">
                       $100
                     </td>
                   </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-minus-circle" aria-hidden="true" style="    margin-right: 10px;"></i>Food
+                    </td>
+                    <td style="padding-left:40px">
+                      Weekly<i class="fa fa-chevron-down" aria-hidden="true" style="padding-left: 5px;"></i>
+                    </td>
+                    <td style="padding-left:40px;font-weight: 600;">
+                      $75
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-left: 40px;border-bottom: none;">
+                      Groceries
+                    </td>
+                    <td style="border-bottom: none;padding-left:40px">
+                      
+                    </td>
+                    <td style="border-bottom: none;padding-left:40px">
+                      $50
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-left: 40px;border-bottom: none;">
+                      Eating Out
+                    </td>  
+                    <td style="border-bottom: none;padding-left:40px">
+                      
+                    </td>                
+                    <td style="border-bottom: none;padding-left:40px">
+                      $25
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-plus-circle" aria-hidden="true" style="    margin-right: 10px;padding-left: 20px;color: grey"></i>Add line item
+                    </td style="color:grey">
+                    <td>
+                      
+                    </td>  
+                    <td style="padding-left:40px">
+                      
+                    </td>                     
+                  </tr>
+                  <tr>
+                    <td >
+                      <i class="fa fa-plus-circle" aria-hidden="true" style="    margin-right: 10px;"></i>Leisure
+                    </td>
+                    <td style="padding-left:40px">
+                      Weekly<i class="fa fa-chevron-down" aria-hidden="true" style="padding-left: 5px;"></i>
+                    </td>
+                    <td style="padding-left:40px;font-weight: 600;">
+                      $100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-plus-circle" aria-hidden="true" style="    margin-right: 10px;"></i>Transit
+                    </td>
+                    <td style="padding-left:40px">
+                      Monthly<i class="fa fa-chevron-down" aria-hidden="true" style="padding-left: 5px;"></i>
+                    </td>
+                    <td style="padding-left:40px;font-weight: 600;">
+                      $50
+                    </td>
+                  </tr>
                 </table>
-              </div>
+              </div> 
             </div>
           </div>
         </div>
