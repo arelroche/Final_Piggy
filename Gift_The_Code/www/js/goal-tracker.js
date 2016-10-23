@@ -112,7 +112,7 @@ function GoalTracker () {
   }
 
   var getCurrentGoals = function() {
-    console.log("GET CURRENT GOALS")
+    alert("GET CURRENT GOALS")
     var promise = new Promise(function(resolve, reject) {
       var currentGoals = []
       getActiveGoals(new Date().valueOf(), function(tx, results) {
