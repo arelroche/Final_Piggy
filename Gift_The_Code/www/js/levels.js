@@ -17,6 +17,18 @@ function Levels () {
     var newLevel = currentLevel() + 1
     localStorage.setItem('currentLevel', newLevel)
     localStorage.setItem('staticPoints', 0)
+    spawnNewCreature()
+  }
+
+  function spawnNewCreature() {
+    db.transaction(function (tx) {
+      tx.executeSql('INSERT INTO pets (type, currentPoints, expression, skincolor, name) '+
+                    'VALUES (?,?,?,?,?)', 
+                    ['owl', 0, 'happy', 'brown', 'Your new Pal!'], 
+                    function(trans, results) {
+                      console.log("New creature created!");
+                    })
+    })
   }
 
   return {
