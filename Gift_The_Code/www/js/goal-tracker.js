@@ -1,5 +1,5 @@
 
-function PointsCalculator () {
+function GoalTracker () {
   
   function getActiveGoals (date, successCallback) {
     db.transaction(function (tx) {
@@ -7,22 +7,10 @@ function PointsCalculator () {
     })
   }
 
-  // function retrieveGoal (id, successCallback) {
-  //   db.transaction(function (tx) {
-  //     tx.executeSql('SELECT * FROM goals WHERE id = ?', id, successCallback)
-  //   })
-  // };
-
-  // function retrieveGoalsPoints (ids, successCallback) {
-  //   db.transaction(function (tx) {
-  //     tx.executeSql('SELECT points FROM goals WHERE id IN (?,?)', ids, successCallback)
-  //   })
-  // };
-
   function savePointsForGoal (goal_id, points) {
     db.transaction(function (tx) {
       tx.executeSql('UPDATE goals SET points = ? WHERE id = ?', [points, goal_id], function(transaction, results) {
-        console.log(results);
+        console.log("updated points");
       })
     })
   };
@@ -30,11 +18,40 @@ function PointsCalculator () {
   function markGoalAsComplete (goal_id) {
     db.transaction(function (tx) {
       tx.executeSql('UPDATE goals SET complete = 1 WHERE id = ?', [goal_id], function(transaction, results) {
-        console.log(results);
+        console.log("saved goal as complete");
       })
     })
   }
 
+  function saveProgressForGoal (goal_id, percentCompleted) {
+    db.transaction(function (tx) {
+      tx.executeSql('UPDATE goals SET progress = ? WHERE id = ?', [percentCompleted, goal_id], function(transaction, results) {
+        console.log("updated progress")
+      })
+    })
+  }
+
+  function saveStandingForGoal (goal_id, standing) {
+    db.transaction(function (tx) {
+      tx.executeSql('UPDATE goals SET standing = ? WHERE id = ?', [standing, goal_id], function(transaction, results) {
+        console.log("updated progress")
+      })
+    })
+  }
+
+  function proratedGoalProgress (goal) {
+    var periodStart = new Date(goal.startDate).valueOf()
+    var periodEnd = new Date(goal.endDate).valueOf()
+    var periodDuration = periodEnd - periodStart
+    var currentDate = Date.now();
+    var periodElapsed = currentDate - periodStart
+
+    var periodElapsedProportion = (periodElapsed / periodDuration)
+    var proratedGoal = goal.goalMoney * periodElapsedProportion
+    var percentCompletedProratedGoal = (goal.currentMoney / proratedGoal) * 100
+
+    saveStandingForGoal(goal.ID, parseInt(percentCompletedProratedGoal));
+  }
 
   function pointsForGoal (goal) {
     var periodStart = new Date(goal.startDate).valueOf()
@@ -43,18 +60,13 @@ function PointsCalculator () {
     var currentDate = Date.now();
     var periodElapsed = currentDate - periodStart
 
-    var periodElapsedPercentage = (periodElapsed / periodDuration) * 100.0
-    // var proratedGoal = goal.goalMoney * periodElapsedPercentage
+    var percentCompletedTotalGoal = (goal.currentMoney / goal.goalMoney) * 100
 
-    var balance = goal.goalMoney - goal.currentMoney
-
-    var percentCompletedTotalGoal = (balance / goal.goalMoney) * 100.0
-    // var percentCompeltedProratedGoal = (balance / proratedGoal) * 100.0
-
-    var points = pointsMultiplier(percentCompletedTotalGoal, goal)
+    var points = pointsMultiplier(percentCompletedTotalGoal, goal);
     goal.points = points;
     console.log(`POINTS FOR ${goal.name}: ${goal.points}`)
-    savePointsForGoal(goal.id, points);
+    savePointsForGoal(goal.ID, parseInt(points));
+    saveProgressForGoal(goal.ID, parseInt(percentCompletedTotalGoal))
   }
 
   function pointsMultiplier (percentCompleted, goal) {
@@ -75,14 +87,26 @@ function PointsCalculator () {
   }
 
   var aggregatePoints = function(currentGoals) {
-    console.log("AGGRETAGE POINTS")
+    console.log("AGGREGATE POINTS")
     var promise = new Promise(function(resolve, reject) {
+      var originalMax = 1000
       var sum = 0
+      var weightedSum = 0
       currentGoals.forEach(function(goal) {
+        var priority = goal.priority
+        var weight = 1 - (priority / 10)
         sum += goal.points
+        weightedSum += goal.points * weight
       });
+      var reduceMaxBy = weightedSum / sum
+      var newMax = originalMax * reduceMaxBy
       var total = sum / currentGoals.length
-      console.log(`AGGRETAGED POINTS: ${total}`)
+      var denominator = (total / newMax)
+      var totalWeightedPoints = originalMax * denominator
+
+      console.log(`AGGREGATED POINTS: ${total}`)
+      console.log(`WEIGHTED POINTS: ${totalWeightedPoints}`)
+      localStorage.setItem('currentTotalPoints', totalWeightedPoints)
       resolve(total);
     })
   }
@@ -106,7 +130,8 @@ function PointsCalculator () {
     console.log("UPDATE CURRENT GOALS")
     var promise = new Promise(function(resolve, reject) {
       currentGoals.forEach(function(goal) {
-        pointsForGoal(goal)
+        pointsForGoal(goal);
+        proratedGoalProgress(goal);
       });
       console.log(currentGoals)
       resolve(currentGoals)
@@ -123,7 +148,7 @@ function PointsCalculator () {
 }
 
 window.setTimeout(function() {
-  pointsCalc = new PointsCalculator();
+  pointsCalc = new GoalTracker();
   pointsCalc.getCurrentGoals()
     .then(pointsCalc.updateCurrentGoals)
     .then(pointsCalc.aggregatePoints)

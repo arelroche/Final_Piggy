@@ -50,6 +50,8 @@ var db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
                   "complete bit,"+
                   "points int,"+
                   "priority int,"+
+                  "progress int,"+
+                  "standing int,"+
                   "name TEXT)"
                   , [], onSuccess, onError);
     
@@ -77,14 +79,21 @@ var db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
     
     tx.executeSql("CREATE TABLE IF NOT EXISTS itemmap("+
                   "idItem int,"+
-                  "idGoal int"
+                  "idGoal int)"
+                  , [], onSuccess, onError);
+
+    tx.executeSql("CREATE TABLE IF NOT EXISTS badges("+
+                   "ID INTEGER PRIMARY KEY,"+
+                   "name text UNIQUE,"+
+                   "date long)"
                   , [], onSuccess, onError);
     
 
     tx.executeSql("DELETE FROM goals");
 
-    InsertGoal(makeGoal("Debt", 15, 50, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card Y", 1));
-    InsertGoal(makeGoal("Savings", 33, 50, new Date('2016-10-20').valueOf(), new Date('2016-11-20').valueOf(), 0, "card Z", 2));
+    InsertGoal(makeGoal("Debt", 15, 50, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card Y", 0));
+    InsertGoal(makeGoal("Savings", 33, 50, new Date('2016-10-20').valueOf(), new Date('2016-11-20').valueOf(), 0, "card Z", 1));
+    InsertGoal(makeGoal("Spending", 980, 1000, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card X", 2));
     
     tx.executeSql('SELECT * FROM goals', [], onSuccess2, onError);
     
@@ -100,7 +109,7 @@ var db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
 
  
   function onSuccess(transaction, resultSet) {
-    // log('Query completed: ' + JSON.stringify(resultSet) + ", " + JSON.stringify(resultSet.rows) + "," + resultSet.rows.length);
+    log('Query completed: ' + JSON.stringify(resultSet) + ", " + JSON.stringify(resultSet.rows) + "," + resultSet.rows.length);
   }
   function onSuccess2(transaction, results) {
       var tblText='<p>';
