@@ -197,7 +197,7 @@
                   <tr>
                     <td id="badge1" class="badge1">
                       
-                      <img src="img/Login Badge.png" style="width:80%;display:block;margin:auto">
+                      <img id="loginBadge" src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
                       <div class="badge-score">150 points</div>
                     </td>
                     <td id="badge2" class="badge1">
@@ -207,18 +207,18 @@
                       
                     </td>
                     <td id="badge3" class="badge1">
-                    <img src="img/Goal Badge.png" style="width:80%;display:block;margin:auto">
+                    <img id="firstGoalBadge" src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
                     <div class="badge-score">200 points</div>
 					
                     </td>
                   </tr>
                   <tr>
                     <td id="badge4" class="badge1">
-                    <img src="img/Pals Badge.png" style="width:80%;display:block;margin:auto">
+                    <img src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
                     <div class="badge-score">300 points</div>
                     </td>
                     <td id="badge5" class="badge1">
-                    <img src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
+                    <img id="threePetsBadge" src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
                     <div class="badge-score">500 points</div>
                     </td>
                     <td id="badge6" class="badge1">
@@ -260,7 +260,6 @@
                 <img id="bank1" src="img/mockups/ProsperCanada-11_Bank1.jpg" style="width: 100%; height: 100%;" onclick="$('#bank1').css('display', 'none'); $('#bank2').css('display', 'block');">
                 <img id="bank2" src="img/mockups/ProsperCanada-12_Bank2.jpg" style="width: 100%; height: 100%;" onclick="$('#bank2').css('display', 'none'); $('#goals').css('display', 'block');">
                 <img id="goals" src="img/mockups/ProsperCanada-13_Goals.jpg" style="width: 100%; height: 100%;" onclick="$('#goals').css('display', 'none'); $('#mainPage1').css('background', '#ffd236'); $('#spendingMain').css('display', 'block');">
-                <img id="next" src="img/mockups/ProsperCanada-13_Goals.jpg" style="width: 100%; height: 100%;" onclick="$('#spendingMain').css('display', 'none'); $('#mainPage1').css('background', '#ffd236'); $('#spendingMain').css('display', 'block');">
               </div>
               <div id="spendingMain" style="display: none;" align="center">
                 <img src="img/ProsperCanada-14 Spending.jpg" style="width: 100%; ">
@@ -482,13 +481,27 @@
           .then(goalsTracker.aggregatePoints)
           .then(function() {
             levels.updateLevel()
-            var totalPoints = goalInfo.totalPoints()
-            var progressPercent = totalPoints / 10
-            $('#barProgress').css({width: `${progressPercent}%`})
-            $('#userTotalPoints').html(totalPoints)
+            updateProgressBar()
+            updateBadges()
           })
 
         badges.trackLogin()
+
+        function updateProgressBar () {
+          var totalPoints = goalInfo.totalPoints()
+          var progressPercent = totalPoints / 10
+          $('#barProgress').css({width: `${progressPercent}%`})
+          $('#userTotalPoints').html(totalPoints)
+        }
+
+        function updateBadges () {
+          badges.updateBadges()
+          var currentBadges = badges.userBadges()
+          currentBadges.forEach(function(name) {
+            var image = `img/${name}.png`
+            $(`#${name}`).attr('src', image)
+          })
+        }
 
 
     </script>

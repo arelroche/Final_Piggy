@@ -1,6 +1,8 @@
 function Badges () {
 
   function awardBadge (name, date) {
+    debugger;
+    localStorage.setItem(name, true)
     db.transaction(function (tx) {
       tx.executeSql('INSERT INTO badges (name, date) VALUES (?,?)', [name, date], function(trans, results) {
         console.log(`Awarded badge ${name}`)
@@ -16,10 +18,11 @@ function Badges () {
   }
 
   function loginBadge () {
-    localStorage.getItem('loginCount')
-    if (loginCount === 10) {
+    var loginCount = localStorage.getItem('loginCount')
+    if (parseInt(loginCount) === 10) {
       awardBadge('loginBadge', Date.now())
       awardPoints(150)
+      localStorage.setItem('loginCount', 0)
     }
   }
 
@@ -52,17 +55,27 @@ function Badges () {
   }
 
   var userBadges = function() {
-    db.transaction(function (tx) {
-      tx.executeSql('SELECT * FROM badges', [], function(trans, results) {
-        return results.rows
-      })
+    var currentBadges = []
+    var badgeNames = ['threePetsBadge', 'firstGoalBadge', 'loginBadge']
+    badgeNames.forEach(function(name) {
+      var badge = localStorage.getItem(name)
+      if (badge === 'true') {
+        currentBadges.push(name)
+      }
     })
+    return currentBadges
+
+    // db.transaction(function (tx) {
+    //   tx.executeSql('SELECT * FROM badges', [], function(trans, results) {
+    //     return results.rows
+    //   })
+    // })
   }
 
   var trackLogin = function() {
     var currentCount = parseInt(localStorage.getItem('loginCount'))
     var newCount = currentCount + 1
-    localStorage.getItem('loginCount', newCount)
+    localStorage.setItem('loginCount', newCount)
     awardPoints(50);
   }
 
