@@ -22,7 +22,6 @@ function Badges () {
     if (!loginCount) {
       localStorage.setItem('loginCount', 0)
     }
-    alert(loginCount)
     if (parseInt(loginCount) >= 3) {
       awardBadge('loginBadge', 'logging in three times', Date.now())
       awardPoints(150)

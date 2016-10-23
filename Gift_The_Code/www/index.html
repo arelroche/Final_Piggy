@@ -580,6 +580,19 @@
       </div>
       <div id="PopUpNewPal" style="position:absolute; display:none; width: 100% height: 100%; top: 0; left : 0;"><img src="img/prospercanada-23_new_pal_720.jpg"></div>
     </div>
+
+    <div id="PopUpNewPal" style="position:absolute; display:none; width: 100%; height: 100%; top: 0; left : 0; z-index: 10000">
+      <img src="img/prospercanada-23_new_pal_720.jpg" style="width: 100%; height: 100%">
+    </div>
+    
+    <div id="PopUpWelcomeBack" style="position:absolute; display:none; width: 100%; height: 100%; top: 0; left : 0; z-index: 10000">
+      <img src="img/mockups/ProsperCanada-19 Popup.jpg" style="width: 100%; height: 100%">
+    </div>
+    
+    <div id="PopUpReachFirstGoal" style="position:absolute; display:none; width: 100%; height: 100%; top: 0; left : 0; z-index: 10000">
+      <img src="img/mockups/ProsperCanada-20 Popup2.jpg" style="width: 100%; height: 100%">
+    </div>
+    
     <script type="text/javascript" src="js/database-setup.js"></script>
     <script type="text/javascript" src="js/fetch-banking-transactions.js"></script>
     <script type="text/javascript" src="js/goal-tracker.js"></script>
@@ -791,6 +804,23 @@
           $("#PopUpNewPal").fadeOut(1000);
         }); 
       }
+      
+      function ShowWelcomeback()
+      {
+        $("#PopUpWelcomeBack").fadeIn(1000);
+        $("#PopUpWelcomeBack").click(function(){
+          $("#PopUpWelcomeBack").fadeOut(1000);
+        }); 
+      }
+
+      function ShowFirstGoal()
+      {
+        $("#PopUpReachFirstGoal").fadeIn(1000);
+        $("#PopUpReachFirstGoal").click(function(){
+          $("#PopUpReachFirstGoal").fadeOut(1000);
+        }); 
+      }
+
     </script>
   </body>
 </html>
