@@ -401,10 +401,27 @@
 
     </script>
     <script type="text/javascript" src="js/sqlshit.js"></script>
-    <script type="text/javascript" src="js/calculators.js"></script>
+    <script type="text/javascript" src="js/goal-tracker.js"></script>
     <script type="text/javascript" src="js/framework7.js"></script>
     <script type="text/javascript" src="js/kitchen-sink.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script src="https://use.fontawesome.com/ed4d942f4e.js"></script>
+    <script type="text/javascript" src="js/goals-info.js"></script>
+    <script type="text/javascript" src="js/badges.js"></script>
+    <script type="text/javascript" src="js/levels.js"></script>
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
+
+    <script>
+      (function) {
+        window.goalsTracker = new GoalTracker();
+        goalsTracker.getCurrentGoals()
+          .then(goalsTracker.updateCurrentGoals)
+          .then(goalsTracker.aggregatePoints)
+
+        window.badges = Badges();
+        window.goalInfo = GoalsInfo();
+        windwo.levels = Levels();
+      }();
+    </script>
   </body>
 </html>
