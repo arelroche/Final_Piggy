@@ -16,7 +16,8 @@ function Badges () {
   }
 
   function loginBadge () {
-    localStorage.getItem('loginCount')
+    var loginCount = localStorage.getItem('loginCount')
+    debugger;
     if (loginCount === 10) {
       awardBadge('loginBadge', Date.now())
       awardPoints(150)

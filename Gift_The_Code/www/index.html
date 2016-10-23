@@ -197,7 +197,7 @@
                   <tr>
                     <td id="badge1" class="badge1">
                       
-                      <img src="img/Login Badge.png" style="width:80%;display:block;margin:auto">
+                      <img id="loginBadge" src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
                       <div class="badge-score">150 points</div>
                     </td>
                     <td id="badge2" class="badge1">
@@ -207,18 +207,18 @@
                       
                     </td>
                     <td id="badge3" class="badge1">
-                    <img src="img/Goal Badge.png" style="width:80%;display:block;margin:auto">
+                    <img id="firstGoalBadge" src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
                     <div class="badge-score">200 points</div>
 					
                     </td>
                   </tr>
                   <tr>
                     <td id="badge4" class="badge1">
-                    <img src="img/Pals Badge.png" style="width:80%;display:block;margin:auto">
+                    <img src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
                     <div class="badge-score">300 points</div>
                     </td>
                     <td id="badge5" class="badge1">
-                    <img src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
+                    <img id="threePetsBadge" src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
                     <div class="badge-score">500 points</div>
                     </td>
                     <td id="badge6" class="badge1">
@@ -481,13 +481,27 @@
           .then(goalsTracker.aggregatePoints)
           .then(function() {
             levels.updateLevel()
-            var totalPoints = goalInfo.totalPoints()
-            var progressPercent = totalPoints / 10
-            $('#barProgress').css({width: `${progressPercent}%`})
-            $('#userTotalPoints').html(totalPoints)
+            updateProgressBar()
+            updateBadges()
           })
 
         badges.trackLogin()
+
+        function updateProgressBar () {
+          var totalPoints = goalInfo.totalPoints()
+          var progressPercent = totalPoints / 10
+          $('#barProgress').css({width: `${progressPercent}%`})
+          $('#userTotalPoints').html(totalPoints)
+        }
+
+        function updateBadges () {
+          badges.updateBadges()
+          var currentBadges = badges.userBadges()
+          currentBadges.forEach(function(name) {
+            var image = `img/${name}.png`
+            $(`#${name}`).attr('src', image)
+          })
+        }
 
 
     </script>
