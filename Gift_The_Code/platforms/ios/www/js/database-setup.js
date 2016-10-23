@@ -1,7 +1,7 @@
 /* functions to Make an Entry for each Table in the BD*/
 function DatabaseSetup () {
   //Estimated size of DB 30mb
-  var estimatedSize = 30 *1024*1024;
+  var estimatedSize = 30*1024*1024;
 
 //open the DB, name of DB is piggy
   window.db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);
@@ -64,6 +64,12 @@ function DatabaseSetup () {
                   "date long,"+
                   "name TEXT)"
                   , [], onSuccess, onError);
+
+    tx.executeSql("DELETE FROM goals");
+
+    InsertGoal(tx, makeGoal("Debt", 15, 50, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card Y", 0));
+    InsertGoal(tx, makeGoal("Savings", 33, 50, new Date('2016-10-20').valueOf(), new Date('2016-11-20').valueOf(), 0, "card Z", 1));
+    InsertGoal(tx, makeGoal("Spending", 980, 1000, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card X", 2));
   }
 
   var buildDatabase = function() {
@@ -158,7 +164,7 @@ function DatabaseSetup () {
   };
 
 
-  function makeGoal(type, currentmoney, goalmoney, startdate, enddate, complete, name)
+  function makeGoal(type, currentmoney, goalmoney, startdate, enddate, complete, name, priority)
   {
     return {
       Type : type,
@@ -167,7 +173,8 @@ function DatabaseSetup () {
       StartDate: startdate,
       EndDate: enddate,
       Complete: complete,
-      Name: name
+      Name: name,
+      Priority: priority
     }
   }
   function makePet(type, points, goalPoints, expression, skincolor, name)

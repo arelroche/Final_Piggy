@@ -260,7 +260,6 @@
                 <img id="bank1" src="img/mockups/ProsperCanada-11_Bank1.jpg" style="width: 100%; height: 100%;" onclick="$('#bank1').css('display', 'none'); $('#bank2').css('display', 'block');">
                 <img id="bank2" src="img/mockups/ProsperCanada-12_Bank2.jpg" style="width: 100%; height: 100%;" onclick="$('#bank2').css('display', 'none'); $('#goals').css('display', 'block');">
                 <img id="goals" src="img/mockups/ProsperCanada-13_Goals.jpg" style="width: 100%; height: 100%;" onclick="$('#goals').css('display', 'none'); $('#mainPage1').css('background', '#ffd236'); $('#spendingMain').css('display', 'block');">
-                <img id="next" src="img/mockups/ProsperCanada-13_Goals.jpg" style="width: 100%; height: 100%;" onclick="$('#spendingMain').css('display', 'none'); $('#mainPage1').css('background', '#ffd236'); $('#spendingMain').css('display', 'block');">
               </div>
               <div id="spendingMain" style="display: none;" align="center">
                 <img src="img/ProsperCanada-14 Spending.jpg" style="width: 100%; ">
@@ -297,7 +296,7 @@
                       Groceries
                     </td>
                     <td style="border-bottom: none;padding-left:40px">
-                      
+                      &nbsp;
                     </td>
                     <td style="border-bottom: none;padding-left:40px">
                       $50
@@ -308,21 +307,21 @@
                       Eating Out
                     </td>  
                     <td style="border-bottom: none;padding-left:40px">
-                      
+                      &nbsp;
                     </td>                
                     <td style="border-bottom: none;padding-left:40px">
                       $25
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td style="color: grey !important;">
                       <i class="fa fa-plus-circle" aria-hidden="true" style="    margin-right: 10px;padding-left: 20px;color: grey"></i>Add line item
                     </td style="color:grey">
                     <td>
-                      
+                      &nbsp;
                     </td>  
                     <td style="padding-left:40px">
-                      
+                      &nbsp;
                     </td>                     
                   </tr>
                   <tr>
@@ -475,8 +474,8 @@
         window.levels = Levels();
         
         database.buildDatabase()
-          // .then(bankInfo.fetchTransactions)
-          // .then(database.updateDatabaseWithTransationInfo)
+          .then(bankInfo.fetchTransactions)
+          .then(database.updateDatabaseWithTransationInfo)
           .then(goalsTracker.getCurrentGoals)
           .then(goalsTracker.updateCurrentGoals)
           .then(goalsTracker.aggregatePoints)

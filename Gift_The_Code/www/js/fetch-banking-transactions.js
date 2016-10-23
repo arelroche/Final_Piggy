@@ -35,7 +35,9 @@ function BankInfo () {
             ref.executeScript({
               code: 'function pullAllTransactions(){var a,b,c;return $(".accountActivity").find("tr").each(function(d){$(this).hasClass("header")||(a=$(this).find("td:eq(0)").text(),b=$(this).find("td:eq(1)").text(),c=$(this).find("td:eq(2)").text()),transactionsAll.push([a,b,c])}),console.log(transactionsAll),JSON.stringify(transactionsAll)}var transactionsAll=[];pullAllTransactions();'
             }, function(results) {
+              console.log(results[0]);
               localStorage.setItem("userAccountTransactions", results[0]);
+
               //alert("Pulled All Transactions");
               ref.close();
               //alert(localStorage.getItem("userAccountTransactions"));

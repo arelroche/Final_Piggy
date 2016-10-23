@@ -64,14 +64,40 @@ p {
   margin: 1em 0;
 }
 .willTable1 td{
-  text-align: center;
+  //text-align: center;
   border-bottom-width: 1px;
   border-bottom-color: #fff;
   border-bottom-style: solid;
 }
 .badge1 {
   width: 33.33%;
+  padding-bottom: 35px;
 }
+.blankBadge {
+
+  /*
+  text-align: center;
+  display:block;
+  margin:auto;
+  color: #bbbbbb;
+  font-weight: 100px;
+  font-size: 50px;
+  width: 80%;
+  height: 135px;
+  background: #efefef;
+  border-radius: 50%;
+  */
+  width:80%;
+  display:block;
+  margin:auto;
+}
+.badge-score {
+  vertical-align:bottom;
+  text-align:center;
+  font-weight:bold;
+  padding-top: 10px;
+}
+
 /* === Grid === */
 .row {
   display: -webkit-box;
