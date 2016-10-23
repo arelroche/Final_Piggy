@@ -1,7 +1,7 @@
 /* functions to Make an Entry for each Table in the BD*/
 function DatabaseSetup () {
   //Estimated size of DB 30mb
-  var estimatedSize = 30 *1024*1024;
+  var estimatedSize = 30*1024*1024;
 
 //open the DB, name of DB is piggy
   window.db = window.openDatabase("piggy.db", 1.1, "piggy", estimatedSize);

@@ -159,10 +159,9 @@
                   <img src="img/piggy1.jpg" style="width: 120px;">
                 </div>
                 <div id="progressBarContainer" style="width: 100%;" align="center">
- <!--                  <div id="progressBar" style="width: 70%; height: 50px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
-                    <div id="barProgress" style="width: 75%; height: 100%; background: #adcf36;"></div>
-                  </div> -->
-                  <progress id="progressBar" max='1000'></progress>
+                  <div id="progressBar" style="width: 70%; height: 50px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
+                    <div id="barProgress" style="width: 0%; height: 100%; background: #adcf36;"></div>
+                  </div>
                   <div id="subProgressBar" style="width: 62%; margin-top: 5px">
                     <table style="width: 100%; font-weight: 700;">
                       <tr>
@@ -170,7 +169,7 @@
                           Piggy
                         </td>
                         <td id="points" align="right">
-                          <span id="userTotalPoints" style="color: #fff;">927</span><span id="currentOutOf">/ 1000 pts</span>
+                          <span id="userTotalPoints" style="color: #fff;">0</span><span id="currentOutOf"> / 1000 pts</span>
                         </td>
                       </tr>
                     </table>
@@ -427,7 +426,6 @@
     <script type="text/javascript" src="js/goals-info.js"></script>
     <script type="text/javascript" src="js/badges.js"></script>
     <script type="text/javascript" src="js/levels.js"></script>
-    <!-- <script type="text/javascript" src="cordova.js"></script> -->
 
     <script>
         window.database = new DatabaseSetup()
@@ -446,7 +444,8 @@
           .then(function() {
             levels.updateLevel()
             var totalPoints = goalInfo.totalPoints()
-            $('#progressBar').value = totalPoints
+            var progressPercent = totalPoints / 10
+            $('#barProgress').css({width: `${progressPercent}%`})
             $('#userTotalPoints').html(totalPoints)
           })
 
