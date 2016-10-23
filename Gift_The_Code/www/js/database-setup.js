@@ -10,7 +10,7 @@ function DatabaseSetup () {
   function GenerateTables(tx)
   {
   console.log("GENERATING DATAGBASE TABLES")
-    tx.executeSql("DROP TABLE goals", [], onSuccess, onError);
+//    tx.executeSql("DROP TABLE goals", [], onSuccess, onError);
 
     tx.executeSql("CREATE TABLE IF NOT EXISTS goals("+
                   "ID INTEGER PRIMARY KEY ASC,"+
@@ -37,12 +37,14 @@ function DatabaseSetup () {
                   "name TEXT)"
                   , [], onSuccess, onError);
 
-    tx.executeSql("CREATE TABLE IF NOT EXISTS transactionhistory("+
-                  "ID INTEGER PRIMARY KEY ASC,"+
-                  "amount money,"+
-                  "date long,"+
-                  "name TEXT)"
-                  , [], onSuccess, onError);
+  tx.executeSql("DROP TABLE transactionhistory", [], onSuccess, onError);
+  tx.executeSql("CREATE TABLE IF NOT EXISTS transactionhistory("+
+                "amount money,"+
+                "date long,"+
+                "name TEXT, "+
+                "CONSTRAINT pk_TransHist PRIMARY KEY (amount, date, name))"
+                , [], onSuccess, onError);
+
 
     tx.executeSql("CREATE TABLE IF NOT EXISTS badges("+
                      "ID INTEGER PRIMARY KEY,"+
@@ -52,7 +54,7 @@ function DatabaseSetup () {
 
 
   //  tx.executeSql("DROP TABLE itemmap", [], onSuccess, onError);
-
+    
     tx.executeSql("CREATE TABLE IF NOT EXISTS transactionmap("+
                   "item TEXT NOT NULL,"+
                   "idGoal int NOT NULL,"+
@@ -65,7 +67,7 @@ function DatabaseSetup () {
                   "name TEXT)"
                   , [], onSuccess, onError);
 
-    tx.executeSql("DELETE FROM goals");
+//    tx.executeSql("DELETE FROM goals");
 
     InsertGoal(tx, makeGoal("Debt", 15, 50, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card Y", 0));
     InsertGoal(tx, makeGoal("Savings", 33, 50, new Date('2016-10-20').valueOf(), new Date('2016-11-20').valueOf(), 0, "card Z", 1));
@@ -79,91 +81,46 @@ function DatabaseSetup () {
         ClearGoals(tx);
         ClearItemHistory(tx);
         ClearItemMap(tx);
-    //    ClearPets(tx);
+        ClearPets(tx);
         ClearUncategorizedTransaction(tx);
-    //    
+    
         GenerateTables(tx);
-    //    EchoDB(tx);
-    //    
-        InsertGoal(tx, makeGoal("debt", 0, 500, new Date().valueOf(), new Date().valueOf(), 0, "costco"));
-    //    InsertMap(tx, makeMap("costco", 1));
-    //    InsertMap(tx, makeMap("costco2", 1));
-    //    InsertMap(tx, makeMap("costco5", 1));
         
-        // var testData = [[new Date(1000000).valueOf(), "costco" , 100.0],[new Date(1000000).valueOf(), "costco 2" , 100.0],[new Date(1000000).valueOf(), "costco" , 100.50],[new Date(1000000).valueOf(), "costco 2" , 100.50],[new Date(1000000).valueOf(), "costco 5" , 500.0]];
-        
-        // UpdateDatabaseWithTransationInfo(tx, testData);
-        
-        
-        
-    //    tx.executeSql("SELECT * FROM transactionmap", [], onSuccess2, onError);
-    //    tx.executeSql("SELECT * FROM goals", [], onSuccess2, onError);
-        
-    //     setTimeout(function(){
-    //       GetUncategorizedTransactions(function(results){
-    //         Log(results);
-    //       });
-    //       GetGoals(function(results){
-    //         Log(results);
-    //       });
-    //       db.transaction(function (tx) {
-    //         tx.executeSql("SELECT * FROM goals", [], onSuccess2, onError);
-    // //        tx.executeSql("SELECT * FROM uncategorizedtransaction", [], onSuccess2, onError);
-    //       });
-    //     }, 1000);
         resolve()
       });
     });
     return promise
   }
 
-  var updateDatabaseWithTransationInfo = function(tx, TransactionInfo)
+  
+  function getDate(date)
+  {
+    var temp = date.split(' ');
+    return new Date(temp[1]+"-"+temp[0]+"-2016").valueOf();
+  }
+  
+  var updateDatabaseWithTransationInfo = function()
   {
     var promise = new Promise(function(resolve, reject) {
+      window.db.transaction(function(tx){
+        for(var cnt = 0; cnt < TransactionInfo.length; cnt++){
+          var date = getDate(TransactionInfo[cnt][0]);
+          var name = TransactionInfo[cnt][1];
+          var amount= parseFloat(TransactionInfo[cnt][2].substr(4, TransactionInfo[cnt][2].length));
 
-      db.transaction(function(tx) {
-        var len = TransactionInfo.length;
-        //check if the last exisits
-        var cnt = len -1;
-        var date = TransactionInfo[cnt][0];
-        var name = TransactionInfo[cnt][1];
-        var amount= TransactionInfo[cnt][2];
-
-        var finalLen = len;
-        var onFree = function()
-        {
-          var ques = "";
-          for(var cnt = 0; cnt < finalLen; cnt++){
-            var date = TransactionInfo[cnt][0];
-            var name = TransactionInfo[cnt][1];
-            var amount= TransactionInfo[cnt][2];
-            InsertItemHistory(tx, makeItem(amount, date, name));
+          InsertItemHistory(tx, makeItem(amount, date, name), function(tx, results){
+            //did add to table
             UpdateGoal(tx, date, amount, name);
-          }
-          console.log("UPDATED DATABASE WITH TRANSACTION INFO")
-          resolve()
+          }, function(tx, error){
+            //didnt add to table
+          }); 
         }
-        
-        var onExists = function()
-        {
-            cnt--;
-            if(cnt < 0)
-              return;
-            
-            date = TransactionInfo[cnt][0];
-            name = TransactionInfo[cnt][1];
-            amount= TransactionInfo[cnt][2];
-            CheckTransaction(tx, date, name, amount, onFree, onExists);  
-        }
-        
-        CheckTransaction(tx, date, name, amount, onFree, onExists);
-      })
+        resolve();
+      });
     });
-
     return promise
-  };
-
-
+  }
+  
   function makeGoal(type, currentmoney, goalmoney, startdate, enddate, complete, name, priority)
   {
     return {
@@ -270,14 +227,6 @@ function DatabaseSetup () {
   }
 
 
-  function EchoDB(tx)
-  {
-    tx.executeSql("SELECT * FROM goals", [], onSuccess2, onError);
-    tx.executeSql("SELECT * FROM pets", [], onSuccess2, onError);
-    tx.executeSql("SELECT * FROM transactionhistory", [], onSuccess2, onError);
-    tx.executeSql("SELECT * FROM transactionmap", [], onSuccess2, onError);
-  }
-
   /*Update goal, transaction history with unique data*/
   function getSimpleName(name)
   {
@@ -301,38 +250,6 @@ function DatabaseSetup () {
       }
     }, onError);
   }
-
-  function CheckTransaction(tx, date, name, amount, onFree, onExist)
-  {
-    tx.executeSql("SELECT * FROM transactionhistory Where name = ? AND date = ? AND amount = ?", [name, date, amount], function(trans, results){
-      if(results.rows.length > 0)
-      {
-        onExist();
-      }
-      else
-      {
-        onFree();
-      }
-    },onError);
-  }
-
-  function Will()
-  {
-    Matt(function(results){
-      $("body").append(results);
-    });
-  }
-
-
-  function Matt(returnFunc)
-  {
-    
-    
-    //do stuff thoughDB and get results in async function
-    var results = [];
-    returnFunc(results);
-  }
-
 
   function sendCallback(results, callback)
   {
