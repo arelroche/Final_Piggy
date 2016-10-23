@@ -144,15 +144,7 @@ function GoalTracker () {
     updateCurrentGoals: updateCurrentGoals,
     aggregatePoints: aggregatePoints
   }
-
 }
-
-window.setTimeout(function() {
-  pointsCalc = new GoalTracker();
-  pointsCalc.getCurrentGoals()
-    .then(pointsCalc.updateCurrentGoals)
-    .then(pointsCalc.aggregatePoints)
-}, 1000);
 
 
 

@@ -11,7 +11,7 @@ function Badges () {
   function awardPoints (amt) {
     var currentPoints = parseInt(localStorage.getItem('currentTotalPoints'))
     var updatedPoints = currentPoints + amt
-    localStorage.setItem('currentTotalPoints', updatedPoints)
+    localStorage.setItem('staticPoints', updatedPoints)
     console.log(`Awarded ${amt} points`)
   }
 
@@ -64,8 +64,3 @@ function Badges () {
     updateBadges: updateBadges
   }
 }
-
-(function() {
-  window.badges = Badges()
-  badges.updateBadges();
-})

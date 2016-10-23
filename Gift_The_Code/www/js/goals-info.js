@@ -24,8 +24,9 @@ function GoalsInfo () {
   }
 
   var totalPoints = function() {
-    var points = localStorage.getItem('currentTotalPoints')
-    return parseInt(points)
+    var dynamicPoints = localStorage.getItem('currentTotalPoints')
+    var staticPoints = localStorage.getItem('staticPoints')
+    return parseInt(dynamicPoints) + parseInt(staticPoints)
   }
 
   return {
