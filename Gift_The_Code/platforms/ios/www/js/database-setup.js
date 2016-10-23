@@ -319,7 +319,6 @@ function DatabaseSetup () {
   }
 
 
-
   var logCnt = 0;
   function Log(text)
   {

@@ -40,6 +40,17 @@ function BankInfo () {
 
               //alert("Pulled All Transactions");
               ref.close();
+              alert("Thank you for syncing your account with TD! Please continue your account setup.");
+              // run some demo functions
+              //$("#header").css("height", "416px");
+
+              if(localStorage.getItem("firstLogin") == null){
+                // nothing
+              } else {
+                demoPopulateBars();
+              }
+              
+              
               //alert(localStorage.getItem("userAccountTransactions"));
               //$("#insertedUserInfo").html(localStorage.getItem("userAccountInfo"));
               console.log("Syncing data done!");
