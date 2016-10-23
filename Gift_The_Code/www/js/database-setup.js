@@ -69,9 +69,9 @@ function DatabaseSetup () {
 
    // tx.executeSql("DELETE FROM goals");
 
-    InsertGoal(tx, makeGoal("Debt", 15, 50, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card Y", 0));
-    InsertGoal(tx, makeGoal("Savings", 33, 50, new Date('2016-10-20').valueOf(), new Date('2016-11-20').valueOf(), 0, "card Z", 1));
-    InsertGoal(tx, makeGoal("Spending", 980, 1000, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card X", 2));
+    InsertGoal(tx, makeGoal("Debt", 15, 100, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card Y", 0));
+    InsertGoal(tx, makeGoal("Savings", 114, 200, new Date('2016-10-20').valueOf(), new Date('2016-11-20').valueOf(), 0, "card Z", 1));
+    InsertGoal(tx, makeGoal("Spending", 611, 1000, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card X", 2));
   }
 
   var buildDatabase = function() {

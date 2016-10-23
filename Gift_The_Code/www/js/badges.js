@@ -1,11 +1,11 @@
 function Badges () {
 
-  function awardBadge (name, date) {
-    debugger;
+  function awardBadge (name, reason, date) {
     localStorage.setItem(name, true)
     db.transaction(function (tx) {
       tx.executeSql('INSERT INTO badges (name, date) VALUES (?,?)', [name, date], function(trans, results) {
-        console.log(`Awarded badge ${name}`)
+        var message = `Congratulatios, you won a badge for ${reason}!`
+        notification(message)
       })
     })
   }
@@ -19,8 +19,11 @@ function Badges () {
 
   function loginBadge () {
     var loginCount = localStorage.getItem('loginCount')
-    if (parseInt(loginCount) === 10) {
-      awardBadge('loginBadge', Date.now())
+    if (!loginCount) {
+      localStorage.setItem('loginCount', 0)
+    }
+    if (parseInt(loginCount) >= 3) {
+      awardBadge('loginBadge', 'logging in three times', Date.now())
       awardPoints(150)
       localStorage.setItem('loginCount', 0)
     }
@@ -30,7 +33,7 @@ function Badges () {
     db.transaction(function (tx) {
       tx.executeSql('SELECT id FROM goals WHERE complete = 1', [], function(trans, results) {
         if (results.rows.length === 1) {
-          awardBadge('firstGoalBadge', Date.now())
+          awardBadge('firstGoalBadge', 'reaching your first goal', Date.now())
           awardPoints(200)
         }
       })
@@ -41,7 +44,7 @@ function Badges () {
     db.transaction(function (tx) {
       tx.executeSql('SELECT id FROM pets', [], function(trans, results) {
         if (results.rows.length === 3) {
-          awardBadge('threePetsBadge', Date.now())
+          awardBadge('threePetsBadge', 'earning three pets', Date.now())
           awardPoints(250)
         }
       })
