@@ -578,6 +578,7 @@
           <p>Integer mollis nulla id nibh elementum finibus. Maecenas eget fermentum ipsum. Sed sagittis condimentum nisl at tempus. Duis lacus libero, laoreet vitae ligula a, aliquet eleifend sapien. Nullam sodales viverra sodales. Nulla hendrerit condimentum dolor facilisis tempor. Donec at est malesuada, sagittis nisi et, accumsan enim.</p>
         </div>
       </div>
+      <div id="PopUpNewPal" style="position:absolute; display:none; width: 100% height: 100%; top: 0; left : 0;"><img src="img/prospercanada-23_new_pal_720.jpg"></div>
     </div>
     <script type="text/javascript" src="js/database-setup.js"></script>
     <script type="text/javascript" src="js/fetch-banking-transactions.js"></script>
@@ -769,7 +770,14 @@
       $("#header").find(".fa-times").click(function(){
         $("#header").find("#speechBubble").css("display", "none");
       })
-        
+      
+      function ShowNewPal()
+      {
+        $("#PopUpNewPal").fadeIn(1000);
+        $("#PopUpNewPal").click(function(){
+          $("#PopUpNewPal").fadeOut(1000);
+        }); 
+      }
     </script>
   </body>
 </html>
