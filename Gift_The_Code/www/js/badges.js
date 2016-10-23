@@ -67,7 +67,11 @@ function Badges () {
 
     // db.transaction(function (tx) {
     //   tx.executeSql('SELECT * FROM badges', [], function(trans, results) {
-    //     return results.rows
+    //     var currentBadges = []
+    //     for (i = 0; i < results.rows.length; i++) {
+    //       currentBadges.push(results.rows.item(i))
+    //     };
+    //     return currentBadges
     //   })
     // })
   }

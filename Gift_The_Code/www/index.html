@@ -167,9 +167,8 @@
                   
 
                 </div>
-                <div id="piggyFace" style="width: 100%;" align="center">
-                  <img id="regPiggy" src="img/piggy1.jpg" style="width: 120px;display: none">
-                  <img id="ecstaticPiggy" src="img/Estatic Piggy.png" style="width: 120px;">
+                <div class="piggyFace" style="width: 100%;" align="center">
+                  <img id="piggyFace" src="img/piggy1.jpg" style="width: 120px;">
 
                 </div>
                 <div id="progressBarContainer" style="width: 100%;" align="center">
@@ -609,6 +608,8 @@
               levels.updateLevel()
               updateProgressBar()
               updateBadges()
+              updateGoalProgressBars()
+              updatePiggy()
             })
         }
         
@@ -631,9 +632,49 @@
           })
         }
 
+        function updateGoalProgressBars() {
+          new Promise(function(resolve, reject){
+            goalInfo.activeGoals(resolve)
+          }).then(function(goals) {
+            goals.forEach(function(goal) {
+              if (goal.type === "Debt") {
+                setRepayingDollars(goal.points, 1000)
+                if (goal.points >= 1000) {
+                  var message = `Great job, you reached your ${goal.type} goal :)`
+                  notification(message)
+                }
+              } else if (goal.type === "Savings") {
+                setSavingDollars(goal.points, 1000)
+                if (goal.points >= 1000) {
+                  var message = `Great job, you reached your ${goal.type} goal :)`
+                  notification(message)
+                }
+              } else if (goal.type === "Spending") {
+                setSpendingDollars(goal.points, 1000)
+                if (goal.points >= 1000) {
+                  var message = `Oh no, you went over your ${goal.type} limit :(`
+                  notification(message)
+                }
+              }
+            });
+          })
+        }
 
-    </script>
-    <script>
+        function updatePiggy () {
+          var img,
+              totalPoints = goalInfo.totalPoints()
+          if (totalPoints < 5000) {
+            img = 'img/piggy1.jpg'
+          } else {
+            img = 'img/piggy2.png'
+          }
+          $('#piggyFace').attr('src', img)
+        }
+
+        function notification(text) {
+          alert(text)
+        }
+
       // wills high level js functions
 
       function demo(){
@@ -728,6 +769,7 @@
       $("#header").find(".fa-times").click(function(){
         $("#header").find("#speechBubble").css("display", "none");
       })
+        
     </script>
   </body>
 </html>

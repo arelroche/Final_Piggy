@@ -1,18 +1,20 @@
 function GoalsInfo () {
 
-  function formatData(tx, results) {
+  function formatData(results, done) {
     var rows = results.rows
     var results = []
     for (i = 0; i < rows.length; i++) {
-      results.push(rows[i])
+      results.push(rows.item(i))
     }
-    return results;
+    done(results)
   }
 
-  var activeGoals = function() {
+  var activeGoals = function(done) {
     var date = new Date().valueOf()
     db.transaction(function (tx) {
-      tx.executeSql('SELECT * FROM goals WHERE startDate < ? AND endDate >= ?', [date, date], formatData)
+      tx.executeSql('SELECT * FROM goals WHERE startDate < ? AND endDate >= ?', [date, date], function(tx, results) {
+        formatData(results, done)
+      })
     })
   };
 
@@ -24,9 +26,9 @@ function GoalsInfo () {
   }
 
   var totalPoints = function() {
-    var dynamicPoints = localStorage.getItem('currentTotalPoints')
-    var staticPoints = localStorage.getItem('staticPoints')
-    return parseInt(dynamicPoints) + parseInt(staticPoints)
+    var dynamicPoints = parseInt(localStorage.getItem('currentTotalPoints'))
+    var staticPoints = parseInt(localStorage.getItem('staticPoints'))
+    return dynamicPoints + staticPoints
   }
 
   return {

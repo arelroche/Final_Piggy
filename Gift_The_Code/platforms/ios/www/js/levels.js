@@ -10,13 +10,19 @@ function Levels () {
   }
 
   var currentLevel = function() {
+    var level = localStorage.getItem('currentLevel')
+    if (!level) {
+      localStorage.setItem('currentLevel', 1)
+    }
     return parseInt(localStorage.getItem('currentLevel'));
   }
 
   function levelUp () {
     var newLevel = currentLevel() + 1
+    var message = `Congratulations, you beat the level! You're now up to level ${newLevel}!`
     localStorage.setItem('currentLevel', newLevel)
     localStorage.setItem('staticPoints', 0)
+    notification(message);
     spawnNewCreature()
   }
 

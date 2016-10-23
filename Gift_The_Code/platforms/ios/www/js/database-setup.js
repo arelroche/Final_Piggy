@@ -67,7 +67,7 @@ function DatabaseSetup () {
                   "name TEXT)"
                   , [], onSuccess, onError);
 
-//    tx.executeSql("DELETE FROM goals");
+   // tx.executeSql("DELETE FROM goals");
 
     InsertGoal(tx, makeGoal("Debt", 15, 50, new Date('2016-10-20').valueOf(), new Date('2016-10-27').valueOf(), 0, "card Y", 0));
     InsertGoal(tx, makeGoal("Savings", 33, 50, new Date('2016-10-20').valueOf(), new Date('2016-11-20').valueOf(), 0, "card Z", 1));
@@ -107,7 +107,7 @@ function DatabaseSetup () {
         for(var cnt = 0; cnt < TransactionInfo.length; cnt++){
           var date = getDate(TransactionInfo[cnt][0]);
           var name = TransactionInfo[cnt][1];
-          var amount= parseFloat(TransactionInfo[cnt][2].substr(4, TransactionInfo[cnt][2].length));
+          var amount= parseFloat(TransactionInfo[cnt][2].substr(4, TransactionInfo[cnt][2].length)).toPrecision(2);
 
           InsertItemHistory(tx, makeItem(amount, date, name), function(tx, results){
             //did add to table
@@ -236,20 +236,21 @@ function DatabaseSetup () {
 
   function UpdateGoal(tx, date, amount, name)
   { 
-    var simpleName = getSimpleName(name);
-    tx.executeSql("SELECT * FROM transactionmap WHERE item = ?", [simpleName], function(trans, result){
-      if(result.rows.length > 0)
-      {
+    // var simpleName = getSimpleName(name);
+    // tx.executeSql("SELECT * FROM transactionmap WHERE item = ?", [simpleName], function(trans, result){
+    //   if(result.rows.length > 0)
+      // {
+        var goal_id = (Math.floor(Math.random() * 3) + 1)
         tx.executeSql("UPDATE goals SET "+
                       "currentMoney = currentMoney + ? "+
                       "WHERE ID = ?",
-                     [amount, result.rows[0].idGoal], onSuccess, onError);
-      }
-      else
-      {
-         InsertUncategorizedTransaction(tx, makeItem(amount, date, name));
-      }
-    }, onError);
+                     [amount, goal_id], onSuccess, onError);
+    //   }
+    //   else
+    //   {
+    //      InsertUncategorizedTransaction(tx, makeItem(amount, date, name));
+    //   }
+    // }, onError);
   }
 
   function sendCallback(results, callback)
