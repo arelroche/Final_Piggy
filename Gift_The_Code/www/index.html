@@ -154,8 +154,23 @@
           <div data-page="index" class="page" style="background: #fff;">
             <div class="page-content" style="padding-top: 0;">
               <div id="header" style="width: 100%; padding-top: 40px; padding-bottom: 40px; background: #7ed9de;">
+                <div id="speechBubble" style="width: 100%" align="center">
+                  
+                  
+                 	<span style="position:absolute;font-weight:bold;transform:translate(50px,80px)">Wow, you're doing great!</span>
+                 	<span style="position:absolute;transform:translate(65px,110px)">You already <span style="color:orange">saved $50<br></span>in groceries this week!</span>
+                  	<img src="img/speech-bubble.png" style="width:275px;padding-top:15px;margin-bottom:-15px">
+                  	<i class="fa fa-thumbs-up" aria-hidden="true" style="transform:translate(-150px,40px);font-size: 35px;position: absolute;color:#fc5800"></i>
+
+	             	<i class="fa fa-times" aria-hidden="true" style="transform:translate(-40px,30px);font-size: 25px;position: absolute;"></i>
+
+                  
+
+                </div>
                 <div id="piggyFace" style="width: 100%;" align="center">
-                  <img src="img/piggy1.jpg" style="width: 120px;">
+                  <img id="regPiggy" src="img/piggy1.jpg" style="width: 120px;display: none">
+                  <img id="ecstaticPiggy" src="img/Estatic Piggy.png" style="width: 120px;">
+
                 </div>
                 <div id="progressBarContainer" style="width: 100%;" align="center">
                   <div id="progressBar" style="width: 70%; height: 50px; background: #000; border-radius: 30px; border-style: solid; border-color: #494a49; border-width: 6px; overflow: hidden;" align="left">
@@ -180,15 +195,35 @@
                 <table style="width: 100%;">
                   <tr>
                     <td id="badge1" class="badge1">
-                      <div id="blankBadge1" class="blankBadge"></div>
+                      
+                      <img src="img/Login Badge.png" style="width:80%;display:block;margin:auto">
+                      <div class="badge-score">150 points</div>
                     </td>
-                    <td id="badge2" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
-                    <td id="badge3" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
+                    <td id="badge2" class="badge1">
+                      
+                      <img src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
+                      <div class="badge-score">200 points</div>
+                      
+                    </td>
+                    <td id="badge3" class="badge1">
+                    <img src="img/Goal Badge.png" style="width:80%;display:block;margin:auto">
+                    <div class="badge-score">200 points</div>
+					
+                    </td>
                   </tr>
                   <tr>
-                    <td id="badge4" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
-                    <td id="badge5" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
-                    <td id="badge6" class="badge1"><div id="blankBadge1" class="blankBadge"></div></td>
+                    <td id="badge4" class="badge1">
+                    <img src="img/Pals Badge.png" style="width:80%;display:block;margin:auto">
+                    <div class="badge-score">300 points</div>
+                    </td>
+                    <td id="badge5" class="badge1">
+                    <img src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
+                    <div class="badge-score">500 points</div>
+                    </td>
+                    <td id="badge6" class="badge1">
+                    <img src="img/badge-mystery.png" style="width:80%;display:block;margin:auto">
+                    <div class="badge-score">1000 points</div>
+                   	</td>
                   </tr>
                 </table>
               </div>
@@ -224,6 +259,7 @@
                 <img id="bank1" src="img/mockups/ProsperCanada-11_Bank1.jpg" style="width: 100%; height: 100%;" onclick="$('#bank1').css('display', 'none'); $('#bank2').css('display', 'block');">
                 <img id="bank2" src="img/mockups/ProsperCanada-12_Bank2.jpg" style="width: 100%; height: 100%;" onclick="$('#bank2').css('display', 'none'); $('#goals').css('display', 'block');">
                 <img id="goals" src="img/mockups/ProsperCanada-13_Goals.jpg" style="width: 100%; height: 100%;" onclick="$('#goals').css('display', 'none'); $('#mainPage1').css('background', '#ffd236'); $('#spendingMain').css('display', 'block');">
+                <img id="next" src="img/mockups/ProsperCanada-13_Goals.jpg" style="width: 100%; height: 100%;" onclick="$('#spendingMain').css('display', 'none'); $('#mainPage1').css('background', '#ffd236'); $('#spendingMain').css('display', 'block');">
               </div>
               <div id="spendingMain" style="display: none;" align="center">
                 <img src="img/ProsperCanada-14 Spending.jpg" style="width: 100%; ">
@@ -311,6 +347,9 @@
                     </td>
                   </tr>
                 </table>
+                <!--
+                <div style="width: 100%; background: blue; bottom: 0; height: 100px; position: absolute;" align="center"></div>
+                -->
               </div> 
             </div>
           </div>
@@ -512,7 +551,7 @@
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
 
     <script>
-      (function()) {
+      (function) {
         window.goalsTracker = new GoalTracker();
         goalsTracker.getCurrentGoals()
           .then(goalsTracker.updateCurrentGoals)
