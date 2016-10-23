@@ -24,6 +24,7 @@ function Levels () {
     localStorage.setItem('staticPoints', 0)
     notification(message);
     spawnNewCreature()
+    ShowNewPal()
   }
 
   function spawnNewCreature() {

@@ -25,6 +25,7 @@ function Badges () {
     if (parseInt(loginCount) >= 3) {
       awardBadge('loginBadge', 'logging in three times', Date.now())
       awardPoints(150)
+      ShowLoginBadgeNotification()
       localStorage.setItem('loginCount', 0)
     }
   }
@@ -35,6 +36,7 @@ function Badges () {
         if (results.rows.length === 1) {
           awardBadge('firstGoalBadge', 'reaching your first goal', Date.now())
           awardPoints(200)
+          ShowFirstGoal()
         }
       })
     })
