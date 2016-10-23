@@ -788,6 +788,9 @@
                 setRepayingDollars(goalsProgress.debt.current, goalsProgress.debt.total);
                 setTimeout(function(){
                   showSpeachBubble();
+                  setTimeout(function() {
+                    ShowWelcomeBack()
+                  },1000);
                 }, 2000);
               }, 1000);
             }, 1000);
@@ -829,8 +832,6 @@
           $("#PopUpLoginBadge").fadeOut(1000);
         }); 
       }
-
-      ShowWelcomeBack()
 
     </script>
   </body>
