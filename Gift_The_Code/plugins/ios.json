@@ -7,11 +7,11 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.unicarefreelancev2.mero"
-        },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.unicarefreelancev2.mero"
+            "PACKAGE_NAME": "com.final_piggy.mero"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.final_piggy.mero"
         }
     },
     "dependent_plugins": {}

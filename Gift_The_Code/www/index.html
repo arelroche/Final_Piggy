@@ -578,13 +578,13 @@
           <p>Integer mollis nulla id nibh elementum finibus. Maecenas eget fermentum ipsum. Sed sagittis condimentum nisl at tempus. Duis lacus libero, laoreet vitae ligula a, aliquet eleifend sapien. Nullam sodales viverra sodales. Nulla hendrerit condimentum dolor facilisis tempor. Donec at est malesuada, sagittis nisi et, accumsan enim.</p>
         </div>
       </div>
-
+    </div>
     <div id="PopUpNewPal" style="position:absolute; display:none; width: 100%; height: 100%; top: 0; left : 0; z-index: 10000">
       <img src="img/levelUpNotification.jpg" style="width: 100%; height: 100%">
     </div>
     
     <div id="PopUpWelcomeBack" style="position:absolute; display:none; width: 100%; height: 100%; top: 0; left : 0; z-index: 10000">
-      <img src="img/mockups/welcomeBackNotification.jpg" style="width: 100%; height: 100%">
+      <img src="img/welcomeBackNotification.jpg" style="width: 100%; height: 100%">
     </div>
     
     <div id="PopUpReachFirstGoal" style="position:absolute; display:none; width: 100%; height: 100%; top: 0; left : 0; z-index: 10000">
@@ -592,8 +592,10 @@
     </div>
 
     <div id="PopUpLoginBadge" style="position:absolute; display:none; width: 100%; height: 100%; top: 0; left : 0; z-index: 10000">
-      <img src="img/mockups/loginBadgeNotification.jpg" style="width: 100%; height: 100%">
+      <img src="img/loginBadgeNotification.jpg" style="width: 100%; height: 100%">
     </div>
+
+    
     
     <script type="text/javascript" src="js/database-setup.js"></script>
     <script type="text/javascript" src="js/fetch-banking-transactions.js"></script>
@@ -628,8 +630,7 @@
               updatePiggy()
             })
         }
-        
-
+        document.addEventListener("deviceready", demo, false);
         badges.trackLogin()
 
         function updateProgressBar () {
@@ -718,7 +719,6 @@
           syncData();
         }
       }
-      demo();
       
       function setTotalPoints(total, outOf){
         $("#header").find("#userTotalPoints").html(total);
@@ -731,6 +731,15 @@
         $("#piggyFace").animate({ "margin-top": "165px" }, "slow" , function(){
           $("#speechBubble").fadeIn();
         });
+      }
+
+      function closeSpeachBubble(){
+        $("#header").find("#speechBubble").fadeOut(function(){
+          $("#piggyFace").animate({ "margin-top": "0px" }, "slow" , function(){
+            // done closing
+          });
+        });
+        
       }
 
       function setSpendingDollars(total, outOf){
@@ -789,7 +798,9 @@
                 setTimeout(function(){
                   showSpeachBubble();
                   setTimeout(function() {
-                    ShowWelcomeBack()
+                    if(localStorage.getItem("loginCount") > 0){
+                      ShowWelcomeBack()
+                    }
                   },1000);
                 }, 2000);
               }, 1000);
@@ -799,7 +810,7 @@
 
       // on click x speach bubble, hide
       $("#header").find(".fa-times").click(function(){
-        $("#header").find("#speechBubble").css("display", "none");
+        closeSpeachBubble();
       })
       
       function ShowNewPal()

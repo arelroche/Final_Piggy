@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'UniCare Freelance V2' target in the 'UniCare Freelance V2' project
+// Prefix header for all source files of the 'PlanningPal' target in the 'PlanningPal' project
 //
 
 #ifdef __OBJC__

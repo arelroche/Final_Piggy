@@ -82,7 +82,13 @@ function Badges () {
   }
 
   var trackLogin = function() {
-    var currentCount = parseInt(localStorage.getItem('loginCount'))
+    var currentCount
+    if(localStorage.getItem('loginCount') == "NaN"){
+      localStorage.setItem('loginCount', 1);
+      currentCount = parseInt(localStorage.getItem('loginCount'))
+    } else {
+      currentCount = parseInt(localStorage.getItem('loginCount'))
+    }
     var newCount = currentCount + 1
     localStorage.setItem('loginCount', newCount)
     awardPoints(50);

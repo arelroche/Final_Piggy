@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.unicarefreelancev2.mero" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>UniCare Freelance V2</name>
+<widget id="com.final_piggy.mero" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>PlanningPal</name>
     <description>
-        UniCare Freelance V2 
+        PlanningPal
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="wmero1@gmail.com" href="http://pinestudios.ca">
         Will Mero
     </author>
     <content src="index.html" />

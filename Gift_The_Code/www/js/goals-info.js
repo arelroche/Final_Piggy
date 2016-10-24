@@ -26,8 +26,22 @@ function GoalsInfo () {
   }
 
   var totalPoints = function() {
-    var dynamicPoints = parseInt(localStorage.getItem('currentTotalPoints'))
-    var staticPoints = parseInt(localStorage.getItem('staticPoints'))
+    var dynamicPoints;
+    var staticPoints;
+    if(localStorage.getItem('currentTotalPoints') != null){
+      dynamicPoints = parseInt(localStorage.getItem('currentTotalPoints'))
+    } else {
+      localStorage.setItem("currentTotalPoints", 0)
+      dynamicPoints = parseInt(localStorage.getItem('currentTotalPoints'))
+    }
+
+    if(localStorage.getItem('staticPoints') != "NaN"){
+      staticPoints = parseInt(localStorage.getItem('staticPoints'))
+    } else {
+      localStorage.setItem("staticPoints", 0)
+      staticPoints = parseInt(localStorage.getItem('staticPoints'))
+    }
+    
     return dynamicPoints + staticPoints
   }
 
