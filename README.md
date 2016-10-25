@@ -2,6 +2,8 @@
 
 ###Gift The Code
 
+![Demo](http://imgur.com/a/zSH5I)
+
 ##Description
 
 PlanningPal is a financial app that uses gamification to help users reach their financial goals. Through the concept of taking care of a virtual "pal", it will advise the users on how to manage short-term and long-term finances.
