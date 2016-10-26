@@ -53,5 +53,6 @@ Targeting any age bracket, the incentive of the game is that users should care a
 - [ ] View for manual transaction entry
 - [ ] Machine learning algorithm for categorizing transacitons based on description 
 - [ ] Machine learning algorithm for automated financial goal setting 
+
 Future Work: Abstract financial data for cloud storage in order to run demographics based financial analysis
 
