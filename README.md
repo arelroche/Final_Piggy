@@ -2,7 +2,7 @@
 
 ###Gift The Code
 
-![Demo](http://imgur.com/hMsVPlZ)
+![Demo](../Gift_The_Code/www/img/planningpal_demo_video.gif?raw=true "Planning Pal Demo")
 
 ##Description
 
