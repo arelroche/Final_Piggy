@@ -2,7 +2,7 @@
 
 ###Gift The Code
 
-![Demo](Gift_The_Code/www/img/planningpal_demo_video.gif?raw=true "Planning Pal Demo")
+PlanningPal is an open-source project in conjunction with [Prosper Canada](http://prospercanada.org/), a national charity dedicated to expanding economic opportunity for Canadians living in poverty through program and policy innovation. Please feel free to contribute to this project and help develop an app that can change the people look at managing their finances. 
 
 ##Description
 
@@ -11,6 +11,8 @@ PlanningPal is a financial app that uses gamification to help users reach their 
 The objective of the game is to level up and unlock more "pals" through the use of points. Based on how closely users follow their financial goals points will be rewarded or deducted, which in turn affects the health of their pal. Utilizing data pulled from the user's bank account or manual entry, the app calculates and tracks the progress of their goals.
 
 Targeting any age bracket, the incentive of the game is that users should care about their finances as they would for their pet. The app is designed to help users realize how easy and rewarding financial planning can be in the long run. Having a personal and portable tool will give users confidence and an understanding of how to financially prosper
+
+![Demo](Gift_The_Code/www/img/planningpal_demo_video.gif?raw=true "Planning Pal Demo")
 
 ##Technology
 
@@ -38,4 +40,19 @@ Targeting any age bracket, the incentive of the game is that users should care a
   - X-Code (Mac) / Simulator
   - Android Virtual Device
   - Chrome / Safari Remote Inspect
+  
+ ## Install Instructions
+ 1. Clone repo
+ 2. Install Cordova (npm install cordova), if you would like to make changes to the application
+ 3. For iOS - run Gift_The_Code/platforms/ios/PlanningPal.xcodeproj
+ 4. For Android - run cordova platform add android and then cordova build android
+ 
+ ## TODO: 
+ [ ] Encrypt transaction information locally
+ [ ] Integrate a secure financial aggregation API
+ [ ] View for manual transaction entry
+ [ ] Machine learning algorithm for categorizing transacitons based on description 
+ [ ] Machine learning algorithm for automated financial goal setting 
+ 
+ Future Work: Abstract financial data for cloud storage in order to run demographics based financial analysis
 
