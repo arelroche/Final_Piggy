@@ -41,18 +41,17 @@ Targeting any age bracket, the incentive of the game is that users should care a
   - Android Virtual Device
   - Chrome / Safari Remote Inspect
   
- ## Install Instructions
- 1. Clone repo
- 2. Install Cordova (npm install cordova), if you would like to make changes to the application
- 3. For iOS - run Gift_The_Code/platforms/ios/PlanningPal.xcodeproj
- 4. For Android - run cordova platform add android and then cordova build android
+## Install Instructions
+1. Clone repo
+2. Install Cordova (npm install cordova), if you would like to make changes to the application
+3. For iOS - run Gift_The_Code/platforms/ios/PlanningPal.xcodeproj
+4. For Android - run cordova platform add android and then cordova build android
  
- ## TODO: 
- [ ] Encrypt transaction information locally
- [ ] Integrate a secure financial aggregation API
- [ ] View for manual transaction entry
- [ ] Machine learning algorithm for categorizing transacitons based on description 
- [ ] Machine learning algorithm for automated financial goal setting 
- 
- Future Work: Abstract financial data for cloud storage in order to run demographics based financial analysis
+## TODO: 
+[ ] Encrypt transaction information locally
+[ ] Integrate a secure financial aggregation API
+[ ] View for manual transaction entry
+[ ] Machine learning algorithm for categorizing transacitons based on description 
+[ ] Machine learning algorithm for automated financial goal setting 
+Future Work: Abstract financial data for cloud storage in order to run demographics based financial analysis
 
