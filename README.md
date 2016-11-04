@@ -44,8 +44,9 @@ Targeting any age bracket, the incentive of the game is that users should care a
 ## Install Instructions
 1. Clone repo
 2. Install Cordova (npm install cordova), if you would like to make changes to the application
-3. For iOS - run Gift_The_Code/platforms/ios/PlanningPal.xcodeproj
-4. For Android - run cordova platform add android and then cordova build android
+3. For Android - run "cordova platform add android" and then "cordova build android"
+4. For iOS - run "cordova build ios" and then Gift_The_Code/platforms/ios/PlanningPal.xcodeproj
+
  
 ## TODO: 
 - [ ] Encrypt transaction information locally
@@ -53,6 +54,8 @@ Targeting any age bracket, the incentive of the game is that users should care a
 - [ ] View for manual transaction entry
 - [ ] Machine learning algorithm for categorizing transacitons based on description 
 - [ ] Machine learning algorithm for automated financial goal setting 
+- [ ] Full badge set up for multiple badges 
+- [ ] Data arbitration 
 
 Future Work: Abstract financial data for cloud storage in order to run demographics based financial analysis
 
