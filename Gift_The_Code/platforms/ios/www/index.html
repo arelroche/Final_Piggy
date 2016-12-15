@@ -112,6 +112,16 @@
       </div>
       -->
       <div class="content-block-title">PlanningPal Burger Menu</div>
+      <div class="list-block">
+        <ul>
+          <li><a href="#" class="item-link" onclick="resetDemo();"> 
+              <div class="item-content">
+                <div class="item-inner"> 
+                  <div class="item-title">Restart Demo</div>
+                </div>
+              </div></a></li>
+        </ul>
+      </div>
     </div>
     <div class="panel panel-right panel-reveal layout-dark">
       <div class="view view-right">
@@ -849,6 +859,11 @@
         $("#PopUpLoginBadge").click(function(){
           $("#PopUpLoginBadge").fadeOut(1000);
         }); 
+      }
+
+      function resetDemo(){
+        localStorage.removeItem("firstLogin");
+        alert("Demo reset, please resetart the app.");
       }
 
     </script>
