@@ -794,11 +794,14 @@
       function demoPopulateBars(totalPoints, goalsProgress){
         setTotalPoints(totalPoints, 1000);
           setTimeout(function(){
-            setSpendingDollars(goalsProgress.spending.current, goalsProgress.spending.total);
+            //setSpendingDollars(goalsProgress.spending.current, goalsProgress.spending.total);
+            setSpendingDollars(300,750);
             setTimeout(function(){
-              setSavingDollars(goalsProgress.savings.current, goalsProgress.savings.total);
+              //setSavingDollars(goalsProgress.savings.current, goalsProgress.savings.total);
+              setSavingDollars(250,400);
               setTimeout(function(){
-                setRepayingDollars(goalsProgress.debt.current, goalsProgress.debt.total);
+                //setRepayingDollars(goalsProgress.debt.current, goalsProgress.debt.total);
+                setRepayingDollars(427,500)
                 setTimeout(function(){
                   showSpeachBubble();
                   setTimeout(function() {

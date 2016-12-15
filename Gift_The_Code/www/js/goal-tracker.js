@@ -101,8 +101,11 @@ function GoalTracker () {
         // var weight = 1 - (priority / 10)
         // sum += goal.points
         // weightedSum += goal.points * weight
-        total = parseInt(sum / results.rows.length)
-        localStorage.setItem('currentTotalPoints', total)
+        total = parseInt(parseInt(sum) / parseInt(results.rows.length))
+        // hardcoded for demo purposes 
+        // localStorage.setItem('currentTotalPoints', total)
+        localStorage.setItem('currentTotalPoints', 475)
+        console.log("Current..." + total)
         resolve(total);
       });
       // var reduceMaxBy = weightedSum / sum
